@@ -3,13 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Mail;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -19,8 +17,6 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        HttpException::class,
-        ModelNotFoundException::class,
         TokenMismatchException::class,
     ];
 
@@ -94,35 +90,12 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception $exception
      * @return \Illuminate\Http\Response|string
      */
     public function render($request, Exception $exception)
     {
-        $referrer = $request->server->get('referer');
-
-        if ($this->isHttpException($exception)) {
-            switch ($exception->getStatusCode()) {
-                case 404:
-                    return \Response::view('errors.404', array(), 404);
-                    break;
-            }
-
-            return $this->renderHttpException($exception);
-        }
-
-        // show 404 page in case of ModelNotFoundException error
-        if ($exception instanceof ModelNotFoundException) {
-            if ($referrer) {
-                return redirect()->back()->withErrors([
-                    'error' => 'Invaid Resource!'
-                ]);
-            }
-
-            return \Response::view('errors.404', array(), 404);
-        }
-
         // redirect user back in case of token mismatch error
         if ($exception instanceof TokenMismatchException) {
 
