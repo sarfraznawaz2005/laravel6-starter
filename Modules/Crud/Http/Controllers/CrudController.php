@@ -12,7 +12,6 @@ use DB;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-use Meta;
 use Modules\Core\Http\Controllers\CoreController;
 use Nwidart\Modules\Facades\Module;
 
