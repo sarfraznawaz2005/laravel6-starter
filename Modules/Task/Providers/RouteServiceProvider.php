@@ -12,7 +12,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'Modules\Task\Http\Controllers';
+    protected $moduleNamespace = 'Modules\Task\Http\Controllers';
 
     /**
      * Define the routes for the application.
@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
-            ->namespace($this->namespace)
+            ->namespace($this->moduleNamespace)
             ->group(__DIR__ . '/../Routes/web.php');
     }
 
@@ -51,7 +51,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('api')
             ->middleware('api')
-            ->namespace($this->namespace)
+            ->namespace($this->moduleNamespace)
             ->group(__DIR__ . '/../Routes/api.php');
     }
 }
