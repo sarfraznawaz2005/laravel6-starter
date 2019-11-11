@@ -38,6 +38,7 @@ class User extends CoreModel implements
 
     protected $casts = [
         'admin' => 'boolean',
+        'email_verified_at' => 'datetime',
     ];
 
     /**

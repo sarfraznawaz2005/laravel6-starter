@@ -56,7 +56,7 @@ return [
                 'MODULE_NAMESPACE',
             ],
         ],
-        'gitkeep' => true,
+        'gitkeep' => false,
     ],
     'paths' => [
         /*
@@ -102,9 +102,9 @@ return [
             'config' => ['path' => 'Config', 'generate' => true],
             'command' => ['path' => 'Console', 'generate' => true],
             'migration' => ['path' => 'Database/Migrations', 'generate' => true],
-            'seeder' => ['path' => 'Database/Seeders', 'generate' => true],
-            'factory' => ['path' => 'Database/factories', 'generate' => true],
-            'model' => ['path' => 'Entities', 'generate' => true],
+            'seeder' => ['path' => 'Database/Seeders', 'generate' => false],
+            'factory' => ['path' => 'Database/factories', 'generate' => false],
+            'model' => ['path' => 'Models', 'generate' => true],
             'controller' => ['path' => 'Http/Controllers', 'generate' => true],
             'filter' => ['path' => 'Http/Middleware', 'generate' => true],
             'request' => ['path' => 'Http/Requests', 'generate' => true],
@@ -113,16 +113,16 @@ return [
             'lang' => ['path' => 'Resources/lang', 'generate' => true],
             'views' => ['path' => 'Resources/views', 'generate' => true],
             'test' => ['path' => 'Tests/Unit', 'generate' => true],
-            'test-feature' => ['path' => 'Tests/Feature', 'generate' => true],
+            'test-feature' => ['path' => 'Tests/Feature', 'generate' => false],
             'repository' => ['path' => 'Repositories', 'generate' => false],
-            'event' => ['path' => 'Events', 'generate' => false],
-            'listener' => ['path' => 'Listeners', 'generate' => false],
-            'policies' => ['path' => 'Policies', 'generate' => false],
-            'rules' => ['path' => 'Rules', 'generate' => false],
-            'jobs' => ['path' => 'Jobs', 'generate' => false],
-            'emails' => ['path' => 'Emails', 'generate' => false],
-            'notifications' => ['path' => 'Notifications', 'generate' => false],
-            'resource' => ['path' => 'Transformers', 'generate' => false],
+            'event' => ['path' => 'Events', 'generate' => true],
+            'listener' => ['path' => 'Listeners', 'generate' => true],
+            'policies' => ['path' => 'Policies', 'generate' => true],
+            'rules' => ['path' => 'Rules', 'generate' => true],
+            'jobs' => ['path' => 'Jobs', 'generate' => true],
+            'emails' => ['path' => 'Emails', 'generate' => true],
+            'notifications' => ['path' => 'Notifications', 'generate' => true],
+            'resource' => ['path' => 'Transformers', 'generate' => true],
         ],
     ],
     /*
@@ -151,10 +151,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'eTeam',
         'author' => [
-            'name' => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name' => 'Sarfraz Ahmed',
+            'email' => 'sarfraznawaz2005@gmail.com',
         ],
     ],
     /*
