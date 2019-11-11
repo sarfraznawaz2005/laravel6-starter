@@ -1,3 +1,8 @@
+api_token confirm from docs
+compare configs
+check all packages are working
+https://github.com/eusonlito/laravel-Meta
+
 vendor cleanup command too slow
 npm outdated
 composer outdated
