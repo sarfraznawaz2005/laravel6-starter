@@ -3,6 +3,7 @@ compare configs
 check all packages are working
 https://github.com/eusonlito/laravel-Meta
 check module stuff from crud (add/delete/etc)
+livewire/livewire
 
 vendor cleanup command too slow
 npm outdated
