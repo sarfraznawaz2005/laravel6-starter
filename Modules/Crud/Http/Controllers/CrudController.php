@@ -12,6 +12,7 @@ use DB;
 use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 use Modules\Core\Http\Controllers\CoreController;
 use Nwidart\Modules\Facades\Module;
 
@@ -278,15 +279,24 @@ class CrudController extends CoreController
         return $php . ' ' . base_path() . '/artisan ';
     }
 
-    protected function areMigrationsPending(): bool
+    protected function areMigrationsPending()
     {
-        $output = '';
+        Artisan::call('migrate:status');
+        $output = Artisan::output();
 
-        Artisan::call('migrate', ['--pretend' => true]);
-        $output .= Artisan::output();
+        if (Str::contains(trim($output), 'No migrations')) {
+            return false;
+        }
 
-        if (false === strpos($output, 'Nothing')) {
-            return true;
+        $output = collect(explode("\n", $output));
+        $output = $output->reject(static function ($item) {
+            return !Str::contains($item, '| N');
+        });
+
+        $count = $output->count() !== 0;
+
+        if ($count) {
+            return $output;
         }
 
         return false;

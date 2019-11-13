@@ -14,9 +14,14 @@
             }
         }
     </style>
-    <div class="text-center" style="font-size: 20px;" align="center">
-        <strong class="blink label label-warning">Migrations Pending!</strong>
+    <div class="text-center" align="center">
+        <strong class="blink label label-warning" style="font-size: 16px;">Migrations Pending!</strong><br><br>
+
+        @foreach($migrationsPending as $migrationPending)
+            <strong>&roarr; {{trim(str_replace(['| No', '|'], '', $migrationPending))}}</strong><br>
+        @endforeach
     </div>
+    <hr>
     <?php endif; ?>
 
 @section('main_crud_panel.component_panel_buttons')
@@ -53,10 +58,7 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Alias</th>
                 <th>Description</th>
-                <th>Order</th>
-                <th width="60" align="center">Details</th>
                 <th width="60" align="center">Status</th>
                 <th width="60" align="center">Delete</th>
             </tr>
@@ -64,52 +66,21 @@
             <tbody>
             @foreach(Module::all() as $module)
                 <tr>
-                    <td>{{$module->name}}</td>
-                    <td>{{$module->alias}}</td>
-                    <td>{{$module->description}}</td>
-                    <td>{{$module->order}}</td>
-                    <td align="center" style="font-weight: normal;">
-                        <a href="#" data-toggle="modal" data-target="#details-modal-{{$module->alias}}">
-                            <b class="btn btn-primary btn-sm glyphicon glyphicon-eye-open"></b>
-                        </a>
-
-                        @php
-                            $modelDetails = '<br><strong class="badge">Providers:</strong><br>';
-                            $modelDetails .= implode("<br>", $module->providers);
-
-                            $modelDetails .= '<br><br><strong class="badge">Aliases:</strong><br>';
-                            $modelDetails .= implode("<br>", $module->aliases);
-
-                            $modelDetails .= '<br><br><strong class="badge">Files:</strong><br>';
-                            $modelDetails .= implode("<br>", $module->files);
-
-                            $modelDetails .= '<br><br><strong class="badge">Requires:</strong><br>';
-                            $modelDetails .= implode("<br>", $module->requires);
-
-                            $modelDetails .= '<br><br>';
-                        @endphp
-
-                        @modal(['id' => 'details-modal-' . $module->alias, 'header_class' => 'modal-header-success',
-                        'title' => 'Details'])
-
-                        {!! $modelDetails !!}
-
-                        @endmodal
-
-                    </td>
+                    <td>{{$module->getName()}}</td>
+                    <td>{{$module->getDescription()}}</td>
                     <td>
-                        @if($module->name !== 'Core' && $module->name !== 'Crud')
-                            @if($module->active == 1)
+                        @if($module->getName() !== 'Core' && $module->getName() !== 'Crud')
+                            @if($module->isEnabled())
                                 <a data-placement="top" data-tooltip="Disable"
                                    data-original-title="Disable"
-                                   href="{{route('crud.toggle_status', $module->name)}}"
+                                   href="{{route('crud.toggle_status', $module->getName())}}"
                                    title="Disable">
                                     <b class="btn btn-success btn-sm glyphicon glyphicon-ok"></b>
                                 </a>
                             @else
                                 <a data-placement="top" data-tooltip="Enable"
                                    data-original-title="Enable"
-                                   href="{{route('crud.toggle_status', $module->name)}}"
+                                   href="{{route('crud.toggle_status', $module->getName())}}"
                                    title="Enable">
                                     <b class="btn btn-default btn-sm glyphicon glyphicon-ok"></b>
                                 </a>
@@ -119,8 +90,8 @@
                         @endif
                     </td>
                     <td align="center">
-                        @if (! in_array($module->name, Module::getSystemModules()))
-                            {!! listingDeleteButtonOld(route('crud.destroy', [$module->name]), 'Module')!!}
+                        @if (! in_array($module->getName(), Module::getSystemModules()))
+                            {!! listingDeleteButtonOld(route('crud.destroy', [$module->getName()]), 'Module')!!}
                         @else
                             N/A
                         @endif
@@ -237,8 +208,7 @@
                 if (this.value === 'module:route-provider') {
                     $('#name').removeAttr('required');
                     $('#name_container').slideUp('fast');
-                }
-                else {
+                } else {
                     $('#name').attr('required', true);
                     $('#name_container').slideDown('fast');
                 }
@@ -250,12 +220,12 @@
 @push('styles')
     <style>
         a {
-            color:#2780E3;
+            color: #2780E3;
             text-decoration: none;
         }
 
         a:hover {
-            color:#333;
+            color: #333;
             text-decoration: none;
         }
     </style>

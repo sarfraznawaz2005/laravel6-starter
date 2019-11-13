@@ -13,7 +13,6 @@
 
     <link rel="stylesheet" href="/modules/crud/css/bootstrap/css/theme.min.css">
     <link rel="stylesheet" href="/modules/crud/css/bootstrap/css/custom.css">
-    <link rel="stylesheet" href="/modules/core/css/loader.css">
     <link rel="stylesheet" href="/modules/crud/css/custom.css">
 
     @stack('styles')
