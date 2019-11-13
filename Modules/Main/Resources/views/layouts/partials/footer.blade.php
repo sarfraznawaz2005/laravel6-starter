@@ -6,7 +6,7 @@
 </footer>
 
 {{-- IE es6 pollyfill --}}
-@if(Browser::isIE())
+@if(isIE())
     <script src="/modules/core/js/pollyfills.js"></script>
 @endif
 

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Modules\Core\Recipients\DynamicRecipient;
 use Carbon\Carbon;
+use Sinergi\BrowserDetector\Browser;
 
 function appName()
 {
@@ -540,4 +541,13 @@ function getSql($builder)
     $addSlashes = str_replace('?', "'?'", $builder->toSql());
 
     return vsprintf(str_replace('?', '%s', $addSlashes), $builder->getBindings());
+}
+
+function isIE()
+{
+    if ((new Browser())->getName() === Browser::IE) {
+        return true;
+    }
+
+    return false;
 }
