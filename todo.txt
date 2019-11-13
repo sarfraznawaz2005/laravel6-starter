@@ -1,4 +1,3 @@
-check module stuff from crud (add/delete/etc)
 api_token confirm from docs
 check all packages are working
 https://github.com/eusonlito/laravel-Meta
