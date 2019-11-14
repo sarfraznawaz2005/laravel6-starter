@@ -1,3 +1,4 @@
+ConfirmPasswordController.php
 theme issues
 remove bootstrap 4 for admin and use app.css instead
 php artisan vendor:publish --all --force
