@@ -53,6 +53,14 @@ return [
     'x-permitted-cross-domain-policies' => 'none',
 
     /*
+     * X-Power-By
+     *
+     * Note: it will not add to response header if the value is empty string.
+     */
+
+    'x-power-by' => '',
+
+    /*
      * X-XSS-Protection
      *
      * Reference: https://blogs.msdn.microsoft.com/ieinternals/2011/01/31/controlling-the-xss-filter
@@ -107,6 +115,8 @@ return [
         'max-age' => 15552000,
 
         'include-sub-domains' => false,
+
+        'preload' => true,
     ],
 
     /*
@@ -165,120 +175,14 @@ return [
          * the priority is 'none' > '*' > 'self allow'.
          */
 
-        'autoplay' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'camera' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'encrypted-media' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'fullscreen' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'geolocation' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'microphone' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'midi' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'payment' => [
-            'none' => false,
-
-            '*' => false,
-
-            'self' => true,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
-        'picture-in-picture' => [
-            'none' => false,
-
-            '*' => true,
-
-            'self' => false,
-
-            'allow' => [
-                // 'url',
-            ],
-        ],
-
         'accelerometer' => [
             'none' => false,
 
             '*' => false,
 
             'self' => true,
+
+            'src' => false,
 
             'allow' => [
                 // 'url',
@@ -292,6 +196,106 @@ return [
 
             'self' => true,
 
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'autoplay' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'camera' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'display-capture' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'document-domain' => [
+            'none' => false,
+
+            '*' => true,
+
+            'self' => false,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'encrypted-media' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'fullscreen' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'geolocation' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
             'allow' => [
                 // 'url',
             ],
@@ -303,6 +307,8 @@ return [
             '*' => false,
 
             'self' => true,
+
+            'src' => false,
 
             'allow' => [
                 // 'url',
@@ -316,6 +322,64 @@ return [
 
             'self' => true,
 
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'microphone' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'midi' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'payment' => [
+            'none' => false,
+
+            '*' => false,
+
+            'self' => true,
+
+            'src' => false,
+
+            'allow' => [
+                // 'url',
+            ],
+        ],
+
+        'picture-in-picture' => [
+            'none' => false,
+
+            '*' => true,
+
+            'self' => false,
+
+            'src' => false,
+
             'allow' => [
                 // 'url',
             ],
@@ -327,6 +391,8 @@ return [
             '*' => false,
 
             'self' => true,
+
+            'src' => false,
 
             'allow' => [
                 // 'url',
@@ -340,6 +406,8 @@ return [
 
             'self' => false,
 
+            'src' => false,
+
             'allow' => [
                 // 'url',
             ],
@@ -352,6 +420,8 @@ return [
 
             'self' => true,
 
+            'src' => false,
+
             'allow' => [
                 // 'url',
             ],
@@ -363,6 +433,8 @@ return [
             '*' => false,
 
             'self' => true,
+
+            'src' => false,
 
             'allow' => [
                 // 'url',
@@ -410,26 +482,25 @@ return [
             ],
 
             'nonces' => [
-                'base64-encoded',
+                // 'base64-encoded',
             ],
 
             'schemes' => [
-                //'http:',
-                //'https:',
+                // 'https:',
             ],
 
-            'self' => true,
+            'self' => false,
 
-            'unsafe-inline' => true,
+            'unsafe-inline' => false,
 
-            'unsafe-eval' => true,
+            'unsafe-eval' => false,
 
             'strict-dynamic' => false,
 
             'unsafe-hashed-attributes' => false,
 
             // https://www.chromestatus.com/feature/5792234276388864
-            'report-sample' => false,
+            'report-sample' => true,
 
             'add-generated-nonce' => false,
         ],
@@ -453,9 +524,9 @@ return [
                 // 'https:',
             ],
 
-            'self' => true,
+            'self' => false,
 
-            'unsafe-inline' => true,
+            'unsafe-inline' => false,
 
             'report-sample' => true,
 
@@ -463,43 +534,43 @@ return [
         ],
 
         'img-src' => [
-            'self' => true,
+            //
         ],
 
         'default-src' => [
-            'self' => true,
+            //
         ],
 
         'base-uri' => [
-            'self' => true,
+            //
         ],
 
         'connect-src' => [
-            'self' => true,
+            //
         ],
 
         'font-src' => [
-            'self' => true,
+            //
         ],
 
         'form-action' => [
-            'self' => true,
+            //
         ],
 
         'frame-ancestors' => [
-            'self' => true,
+            //
         ],
 
         'frame-src' => [
-            'self' => true,
+            //
         ],
 
         'manifest-src' => [
-            'self' => true,
+            //
         ],
 
         'media-src' => [
-            'self' => true,
+            //
         ],
 
         'object-src' => [

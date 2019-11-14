@@ -1,23 +1,16 @@
-ConfirmPasswordController.php
-theme issues
-remove bootstrap 4 for admin and use app.css instead
-php artisan vendor:publish --all --force
-api_token confirm from docs
-check all packages are working
-https://github.com/eusonlito/laravel-Meta
 publish migrate rundev, optimize, etc toolbar
 
-vendor cleanup command too slow
 npm outdated
 composer outdated
 
-- https://github.com/pqina/filepond
 - verify all configs and their options are used and that they are working fine
 - php artisan vendor:publish --all --force and adjust new settings by packages by comparing with git
 - compare changes in defaults in .env, composer.json, app.js, bootstrap.js, default framework config files, etc
+- check all packages are working
 
 ISSUES:
 --------------------------------------
+- vendor cleanup command too slow
 - validate forms plugin does not show red borders - in the mean time, i added css for red borders in loader.css file.
 
 

@@ -131,7 +131,7 @@ class CrudController extends CoreController
     public function destroy($moduleName)
     {
         if (Module::has($moduleName)) {
-            if (!in_array($moduleName, Module::getSystemModules())) {
+            if (!in_array($moduleName, Module::getSystemModules(), true)) {
                 $module = Module::find($moduleName);
 
                 if ($module && $module->delete()) {
