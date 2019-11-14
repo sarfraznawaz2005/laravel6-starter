@@ -1,25 +1,14 @@
+theme issues
+remove bootstrap 4 for admin and use app.css instead
+php artisan vendor:publish --all --force
 api_token confirm from docs
 check all packages are working
 https://github.com/eusonlito/laravel-Meta
+publish migrate rundev, optimize, etc toolbar
 
 vendor cleanup command too slow
 npm outdated
 composer outdated
-
--------------
-
-https://www.phptesting.org/
-https://github.com/antonioribeiro/tddd
-http://concourse.ci
-https://github.com/FriendsOfPHP/Sismo
-
-https://github.com/antonioribeiro/health
-Laravel Horizon
-
--------------------------------
-https://github.com/bradcornford/Backup
-https://github.com/jeremykenedy/laravel-logger
---------------------------
 
 - https://github.com/pqina/filepond
 - verify all configs and their options are used and that they are working fine
@@ -30,10 +19,5 @@ ISSUES:
 --------------------------------------
 - validate forms plugin does not show red borders - in the mean time, i added css for red borders in loader.css file.
 
--------------------------
 
-https://github.com/mad-web/laravel-enum
-https://github.com/skrajewski/laravel-guard
-https://github.com/rennokki/guardian
-https://github.com/jeremykenedy/laravel-roles
 
