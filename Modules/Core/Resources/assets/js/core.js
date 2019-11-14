@@ -69,8 +69,7 @@ $(function () {
             var activeTab = $('a[href="' + selected_tab + '"]');
             activeTab && activeTab.tab('show');
         }
-    }
-    catch (e) {
+    } catch (e) {
     }
 
     /*
@@ -117,7 +116,7 @@ $('body').on('click', '.confirm-delete', function (e) {
     var label = $(this).data('label');
     var $form = $(this).closest('form');
 
-    swal({
+    swal.fire({
         title: 'Are you sure?',
         text: label + " will be deleted!",
         type: 'warning',
@@ -160,22 +159,22 @@ function showAlert(message, title, type, closeOnEscapeKey, callback) {
         closeOnClickOutside = false;
     }
 
-    swal({
+    swal.fire({
         title: title,
         text: message,
         icon: type,
         content: message,
         closeOnEsc: closeOnEscapeKey,
         closeOnClickOutside: closeOnClickOutside
+    }).then(() => {
+        if (typeof callback !== 'undefined' && typeof callback === 'function') {
+            callback();
+        }
     });
-
-    if (typeof callback !== 'undefined' && typeof callback === 'function') {
-        callback();
-    }
 }
 
 function showConfirm(message, callback) {
-    swal({
+    swal.fire({
         title: "Are you sure?",
         text: message,
         icon: "warning",
@@ -195,13 +194,12 @@ function showConfirm(message, callback) {
         },
         closeOnEsc: true,
         dangerMode: true,
-    })
-        .then((willDelete) => {
-            if (willDelete) {
-                document.querySelector('.swal-button').disabled = true;
-                callback();
-            }
-        });
+    }).then((willDelete) => {
+        if (willDelete) {
+            document.querySelector('.swal-button').disabled = true;
+            callback();
+        }
+    });
 }
 
 function notify(message, type, sticky) {

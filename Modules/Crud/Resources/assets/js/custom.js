@@ -49,15 +49,15 @@ function showAlert(message, title, type, closeOnEscapeKey, callback) {
         closeOnEscapeKey = true;
     }
 
-    swal({
+    swal.fire({
         title: title,
         text: message,
         icon: type,
         content: message,
         closeOnEsc: closeOnEscapeKey
+    }).then(() => {
+        if (typeof callback !== 'undefined' && typeof callback === 'function') {
+            callback();
+        }
     });
-
-    if (typeof callback !== 'undefined' && typeof callback === 'function') {
-        callback();
-    }
 }
