@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace Modules\User\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Modules\Core\Http\Controllers\CoreController;
 
-class ConfirmPasswordController extends Controller
+class ConfirmPasswordController extends CoreController
 {
     /*
     |--------------------------------------------------------------------------
@@ -35,5 +35,19 @@ class ConfirmPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        parent::__construct();
+    }
+
+    /**
+     * Display the password confirmation view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showConfirmForm()
+    {
+        title('Confirm Password');
+
+        return view('user::auth.passwords.confirm');
     }
 }

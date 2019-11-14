@@ -42,6 +42,18 @@
        href="{{route('crud.publish')}}">
         <i class="glyphicon glyphicon-globe"></i> Publish
     </a>
+
+    <div style="display: inline-block; margin-left: 50px;">
+        <a class="btn btn-default btn-sm" href="/console__" target="_blank" data-placement="bottom" data-tooltip
+           data-original-title="View Console">
+            <i class="glyphicon glyphicon-console"></i>
+        </a>
+        <a class="btn btn-danger btn-sm" href="/applogs__" target="_blank" target="_blank" data-placement="bottom" data-tooltip
+           data-original-title="View Logs">
+            <i class="glyphicon glyphicon-paperclip"></i>
+        </a>
+    </div>
+
 @endsection
 
 <ul class="nav nav-tabs">

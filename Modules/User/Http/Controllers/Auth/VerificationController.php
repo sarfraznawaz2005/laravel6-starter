@@ -4,9 +4,9 @@ namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Modules\Core\Http\Controllers\CoreController;
 
-class VerificationController extends Controller
+class VerificationController extends CoreController
 {
     /*
     |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ class VerificationController extends Controller
     |
     | This controller is responsible for handling email verification for any
     | user that recently registered with the application. Emails may also
-    | be resent if the user did not receive the original email message.
+    | be re-sent if the user didn't receive the original email message.
     |
     */
 
@@ -40,6 +40,8 @@ class VerificationController extends Controller
         $this->middleware('throttle:6,1')->only('verify', 'resend');
 
         $this->redirectTo = config('user.redirect_route_after_register', '/');
+
+        parent::__construct();
     }
 
     public function show(Request $request)
