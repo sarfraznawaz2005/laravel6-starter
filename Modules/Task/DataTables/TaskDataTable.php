@@ -132,7 +132,7 @@ class TaskDataTable extends DataTable
         return 'Task_' . date('YmdHis');
     }
 
-    protected function buttonMarkComplete($link, $status)
+    protected function buttonMarkComplete($link, $status): string
     {
         $title = $status == 0 ? 'Mark as complete' : 'Mark as un-complete';
         $type = $status == 0 ? 'secondary' : 'success';
