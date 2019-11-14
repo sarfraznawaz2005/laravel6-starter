@@ -32,6 +32,7 @@
         "mews/purifier": "^3.1",
         "nwidart/laravel-modules": "^6.1",
         "olssonm/l5-very-basic-auth": "^6.1",
+        "pusher/pusher-php-server": "~4.0",
         "qcod/laravel-imageup": "^1.0",
         "sarfraznawaz2005/emailwatch": "^1.1",
         "sarfraznawaz2005/loading": "^1.3",

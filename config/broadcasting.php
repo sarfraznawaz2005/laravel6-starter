@@ -41,7 +41,7 @@ return [
                 'host' => env('MIX_SOCKET_HOST'),
                 'port' => env('MIX_SOCKET_PORT'),
                 'scheme' => 'http',
-                'useTLS' => true,
+                'useTLS' => false,
             ],
         ],
 
