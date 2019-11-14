@@ -2,9 +2,9 @@
 
 namespace Modules\User\Events\Subscribers;
 
-use App\Events\UserWasLoggedIn;
-use App\Events\UserWasLoggedOut;
 use Illuminate\Support\Facades\Log;
+use Modules\User\Events\UserWasLoggedIn;
+use Modules\User\Events\UserWasLoggedOut;
 use Modules\User\Models\User;
 
 class UserSubscriber

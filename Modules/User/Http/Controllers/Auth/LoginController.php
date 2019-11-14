@@ -49,7 +49,7 @@ class LoginController extends CoreController
         $credentials = $this->credentials($request);
 
         // also check if user is active
-        $credentials['active'] = 1;
+        $credentials['is_active'] = 1;
 
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
             // logged in successfully

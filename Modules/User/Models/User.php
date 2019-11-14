@@ -37,7 +37,8 @@ class User extends CoreModel implements
     protected $appends = ['full_name'];
 
     protected $casts = [
-        'admin' => 'boolean',
+        'is_admin' => 'boolean',
+        'is_active' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 
@@ -50,7 +51,7 @@ class User extends CoreModel implements
         'name',
         'email',
         'password',
-        'active',
+        'is_active',
     ];
 
     protected $guarded = ['id'];
@@ -94,7 +95,7 @@ class User extends CoreModel implements
 
     public function scopeActive($query)
     {
-        return $query->where('active', 1);
+        return $query->where('is_active', 1);
     }
 
     ###################################################################
@@ -130,7 +131,7 @@ class User extends CoreModel implements
 
     public function isSuperAdmin()
     {
-        return $this->admin;
+        return $this->is_admin;
     }
 
     /**

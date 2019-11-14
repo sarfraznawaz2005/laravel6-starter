@@ -18,9 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('api_token', 80)->unique()->nullable()->default(null);
             $table->timestamp('email_verified_at')->nullable();
-            $table->boolean('admin')->default(0);
-            $table->boolean('active')->default(1);
+            $table->boolean('is_admin')->default(0);
+            $table->boolean('is_active')->default(1);
 
             $table->rememberToken();
             $table->timestamps();

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events;
+namespace Modules\User\Events;
 
 use Carbon\Carbon;
 use Illuminate\Broadcasting\InteractsWithSockets;

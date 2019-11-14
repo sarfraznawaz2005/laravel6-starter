@@ -60,7 +60,7 @@ class RegisterController extends CoreController
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'active' => config('user.activate_user_on_registration') ? 1 : 0,
+            'is_active' => config('user.activate_user_on_registration') ? 1 : 0,
         ]);
 
         return $instance;
