@@ -18,14 +18,14 @@ class UserDataTable extends DataTable
     {
         return datatables()
             ->of($query)
-            ->editColumn('admin', function ($object) {
-                $text = $object->admin == '1' ? 'Yes' : 'No';
+            ->editColumn('admin', static function ($object) {
+                $text = $object->is_admin ? 'Yes' : 'No';
                 $type = $text === 'Yes' ? 'success' : 'primary';
 
                 return tdLabel($type, $text);
             })
-            ->editColumn('active', function ($object) {
-                $text = $object->active == '1' ? 'Yes' : 'No';
+            ->editColumn('active', static function ($object) {
+                $text = $object->is_active ? 'Yes' : 'No';
                 $type = $text === 'Yes' ? 'success' : 'danger';
 
                 return tdLabel($type, $text);
