@@ -40,7 +40,14 @@
        data-original-title="Publish all modules' assets/config/migrations/views/etc"
        data-label="Publish all modules' assets/config/migrations/views/etc" class="btn btn-success btn-sm"
        href="{{route('crud.publish')}}">
-        <i class="glyphicon glyphicon-globe"></i> Publish
+        <i class="glyphicon glyphicon-refresh"></i> Publish
+    </a>
+
+    <a data-placement="bottom" data-tooltip
+       data-original-title="npm run dev/prod"
+       data-label="npm run dev/prod" class="btn btn-primary btn-sm"
+       href="{{route('crud.compile')}}">
+        <i class="glyphicon glyphicon-globe"></i> Compile
     </a>
 @endsection
 

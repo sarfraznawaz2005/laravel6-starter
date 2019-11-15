@@ -227,7 +227,7 @@ class CrudController extends CoreController
                 }
             }
 
-            flash($message ?: nl2br($result), $commandName === 'module:make' ? 'info' : 'success');
+            flash($message ?: nl2br($result), 'success');
 
             if ($commandName === 'module:make') {
                 shell_exec($this->getArtisan() . 'module:setup');
@@ -256,7 +256,28 @@ class CrudController extends CoreController
         Artisan::call('migrate', ['--force' => true]);
         $output .= Artisan::output();
 
-        flash($output ? nl2br($output) : 'Nothing to migrate.', 'warning');
+        flash($output ? nl2br($output) : 'Nothing to migrate.', 'success');
+
+        return redirect()->back();
+    }
+
+    /**
+     * runs only new migrations
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function compile(): \Illuminate\Http\RedirectResponse
+    {
+        $type = 'dev';
+
+        if (app()->environment(['prod', 'production', 'live'])) {
+            $type = 'prod';
+        }
+
+        shell_exec("npm run $type 2>&1");
+        Artisan::call('module:publish');
+
+        flash("npm run $type process finished", 'success');
 
         return redirect()->back();
     }
