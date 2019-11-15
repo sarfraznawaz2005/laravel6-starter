@@ -268,6 +268,8 @@ class CrudController extends CoreController
      */
     public function compile(): \Illuminate\Http\RedirectResponse
     {
+        set_time_limit(0);
+
         $type = 'dev';
 
         if (app()->environment(['prod', 'production', 'live'])) {
