@@ -66,6 +66,8 @@ class CrudController extends CoreController
 
         //echo $output;exit;
 
+        $this->deleteMigratedFiles();
+
         $this->optimize();
 
         flash('Modules Published Successfully!', 'success');
@@ -142,6 +144,32 @@ class CrudController extends CoreController
         }
 
         return redirect()->back();
+    }
+
+    public function deleteMigratedFiles(): void
+    {
+        $dir = base_path() . '/database/migrations';
+        $allFiles = glob($dir . '/*.php', GLOB_NOSORT);
+
+        if ($allFiles) {
+            $migrations = DB::table('migrations')->select('migration')->get()->pluck('migration')->toArray();
+            $migrations = array_map(array($this, 'removeNumber'), $migrations);
+
+            if ($migrations) {
+                foreach ($allFiles as $file) {
+                    $fileName = $this->removeNumber(pathinfo(basename($file))['filename']);
+
+                    if (false !== in_array($fileName, $migrations, true)) {
+                        @unlink($file);
+                    }
+                }
+            }
+        }
+    }
+
+    protected function removeNumber(string $string)
+    {
+        return preg_replace('/\d+/', '', $string);
     }
 
     protected function returnBackWithError($error)
@@ -223,22 +251,7 @@ class CrudController extends CoreController
         Artisan::call('module:publish-migration');
         sleep(3);
 
-        $dir = base_path() . '/database/migrations';
-        $allFiles = glob($dir . '/*.php', GLOB_NOSORT);
-
-        if ($allFiles) {
-            $migrations = DB::table('migrations')->select('migration')->get()->pluck('migration')->toArray();
-
-            if ($migrations) {
-                foreach ($allFiles as $file) {
-                    $fileName = pathinfo(basename($file))['filename'];
-
-                    if (false !== in_array($fileName, $migrations, true)) {
-                        @unlink($file);
-                    }
-                }
-            }
-        }
+        $this->deleteMigratedFiles();
 
         Artisan::call('migrate', ['--force' => true]);
         $output .= Artisan::output();
