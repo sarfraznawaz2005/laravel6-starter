@@ -276,10 +276,14 @@ class CrudController extends CoreController
             $type = 'prod';
         }
 
-        shell_exec("npm run $type 2>&1");
+        $output = shell_exec("npm run $type 2>&1");
         Artisan::call('module:publish');
 
-        flash("npm run $type process finished", 'success');
+        if (false !== stripos($output, 'Compiled successfully')) {
+            flash("npm run $type process finished successfully", 'success');
+        } else {
+            flash("npm run $type process failed", 'danger');
+        }
 
         return redirect()->back();
     }
