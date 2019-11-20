@@ -13,12 +13,12 @@ use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Modules\Core\Http\Controllers\Controller;
 use Nwidart\Modules\Facades\Module;
 
-class CrudController extends Controller
+class CrudController
 {
     protected $nonModuleCommands = [
+        'make:action',
         'make:widget'
     ];
 
@@ -196,8 +196,26 @@ class CrudController extends Controller
             $command = $this->getArtisan() . $commandName . ' 2>&1';
         }
 
+        $namespace = '';
+
         if (in_array($commandName, $this->nonModuleCommands, true)) {
             $command = $this->getArtisan() . $commandName . ' ' . $name . ' 2>&1';
+
+            if ($commandName === 'make:action') {
+                $subFolder = '';
+
+                if (
+                    false !== stripos($name, '--resource') ||
+                    false !== stripos($name, '--api') ||
+                    false !== stripos($name, '--actions')
+                ) {
+                    $subFolder = "\\\\" . ucfirst(explode(' ', $name)[0]);
+                }
+
+                $namespace = "\\\\Modules\\\\$moduleName\\\\Http\\\\Actions$subFolder";
+
+                $command = $this->getArtisan() . $commandName . ' ' . $name . " --namespace=$namespace" . ' 2>&1';
+            }
         }
 
         $result = shell_exec($command);
@@ -224,6 +242,26 @@ class CrudController extends Controller
                         }
                     }
 
+                } elseif ($commandName === 'make:action') {
+                    list($folder) = explode("\n", strstr($result, 'Path: '));
+                    $folder = trim(str_replace('Path: ', '', $folder));
+
+                    $namespace = base_path(ltrim(str_replace('\\\\', '\\', $namespace), '\\'));
+
+                    $files = glob("$folder/*.*");
+
+                    foreach ($files as $file) {
+
+                        if (!File::exists( $namespace)) {
+                            File::makeDirectory($namespace, 0755, true);
+                        }
+
+                        rename($file, $namespace . DIRECTORY_SEPARATOR . basename($file));
+                    }
+
+                    File::deleteDirectory(app_path('Modules'));
+
+                    $result = str_replace('\\app', '', $result);
                 }
             }
 
