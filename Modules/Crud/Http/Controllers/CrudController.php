@@ -13,10 +13,10 @@ use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Modules\Core\Http\Controllers\CoreController;
+use Modules\Core\Http\Controllers\Controller;
 use Nwidart\Modules\Facades\Module;
 
-class CrudController extends CoreController
+class CrudController extends Controller
 {
     protected $nonModuleCommands = [
         'make:widget'

@@ -4,9 +4,8 @@ namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Modules\Core\Http\Controllers\CoreController;
 
-class LoginController extends CoreController
+class LoginController extends Controller
 {
     use AuthenticatesUsers;
 

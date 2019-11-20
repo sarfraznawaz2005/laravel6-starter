@@ -3,9 +3,8 @@
 namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
-use Modules\Core\Http\Controllers\CoreController;
 
-class ConfirmPasswordController extends CoreController
+class ConfirmPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------

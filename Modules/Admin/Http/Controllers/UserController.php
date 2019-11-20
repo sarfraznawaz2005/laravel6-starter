@@ -4,9 +4,9 @@ namespace Modules\Admin\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Modules\Admin\DataTables\UserDataTable;
-use Modules\Core\Http\Controllers\CoreController;
+use Modules\Core\Http\Controllers\Controller;
 
-class UserController extends CoreController
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.

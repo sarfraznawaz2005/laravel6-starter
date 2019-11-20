@@ -2,9 +2,9 @@
 
 namespace Modules\Main\Http\Controllers;
 
-use Modules\Core\Http\Controllers\CoreController;
+use Modules\Core\Http\Controllers\Controller;
 
-class MainController extends CoreController
+class MainController extends Controller
 {
     public function __invoke()
     {

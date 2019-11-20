@@ -7,11 +7,10 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Modules\Core\Http\Controllers\CoreController;
 use Modules\User\Models\User;
 use function abort;
 
-class RegisterController extends CoreController
+class RegisterController extends Controller
 {
     use RegistersUsers;
 

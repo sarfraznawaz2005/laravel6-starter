@@ -4,9 +4,8 @@ namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
-use Modules\Core\Http\Controllers\CoreController;
 
-class ResetPasswordController extends CoreController
+class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 

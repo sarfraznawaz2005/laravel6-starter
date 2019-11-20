@@ -6,14 +6,14 @@
  * Time: 12:30 PM
  */
 
-namespace Modules\Core\Http\Controllers;
+namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
-class CoreController extends BaseController
+class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 }
