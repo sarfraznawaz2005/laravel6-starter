@@ -20,8 +20,8 @@
 
                     @auth
                         @if(Module::isEnabled('Task'))
-                            <li class="nav-item {{active(['task.index', 'task.edit'])}}">
-                                <a class="nav-link" href="{{route('task.index')}}">Tasks</a>
+                            <li class="nav-item {{active(['tasks.index', 'tasks.edit'])}}">
+                                <a class="nav-link" href="{{route('tasks.index')}}">Tasks</a>
                             </li>
                         @endif
                     @endauth

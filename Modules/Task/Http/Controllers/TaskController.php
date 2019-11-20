@@ -2,13 +2,13 @@
 
 namespace Modules\Task\Http\Controllers;
 
-use Modules\Core\Http\Controllers\CoreController;
+use Illuminate\Routing\Controller;
 use Modules\Task\DataTables\TaskDataTable;
 use Modules\Task\Models\Task;
 use function addRequestVar;
 use function user;
 
-class TaskController extends CoreController
+class TaskController extends Controller
 {
     // show listing
     public function index(TaskDataTable $dataTable)

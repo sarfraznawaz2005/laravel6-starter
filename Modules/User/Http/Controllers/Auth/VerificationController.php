@@ -4,9 +4,9 @@ namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
-use Modules\Core\Http\Controllers\CoreController;
+use Illuminate\Routing\Controller;
 
-class VerificationController extends CoreController
+class VerificationController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -40,8 +40,6 @@ class VerificationController extends CoreController
         $this->middleware('throttle:6,1')->only('verify', 'resend');
 
         $this->redirectTo = config('user.redirect_route_after_register', '/');
-
-        parent::__construct();
     }
 
     public function show(Request $request)

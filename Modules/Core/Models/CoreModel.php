@@ -10,7 +10,6 @@ namespace Modules\Core\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Watson\Validating\ValidatingTrait;
 
 /**
  * @property string $created_at
@@ -19,8 +18,6 @@ use Watson\Validating\ValidatingTrait;
  */
 class CoreModel extends Model
 {
-    use ValidatingTrait;
-
     # added to get Cacheable trait working because Ardent was changing this function
     # which was affecting Cacheable trait
     public function newQueryWithoutScopes()

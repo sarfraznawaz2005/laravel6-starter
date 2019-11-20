@@ -166,7 +166,15 @@ function noDataTableResponse()
 
 function title($title = '')
 {
-    \Meta::set('title', $title ?: appName());
+    $title = $title ?: appName();
+
+    \Meta::set('title', $title);
+    \Meta::set('description', $title);
+
+    \Meta::set('site_name', appName());
+    \Meta::set('url', request()->url());
+    \Meta::set('locale', 'en_EN');
+    \Meta::set('robots', 'index,follow');
 }
 
 function sendNotification($email, $object)

@@ -3,9 +3,9 @@
 namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Modules\Core\Http\Controllers\CoreController;
+use Illuminate\Routing\Controller;
 
-class ForgotPasswordController extends CoreController
+class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
 
@@ -19,7 +19,5 @@ class ForgotPasswordController extends CoreController
     public function __construct()
     {
         $this->middleware('guest');
-        
-        parent::__construct();
     }
 }

@@ -5,13 +5,13 @@ namespace Modules\User\Http\Controllers\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Modules\Core\Http\Controllers\CoreController;
 use Modules\User\Models\User;
 use function abort;
 
-class RegisterController extends CoreController
+class RegisterController extends Controller
 {
     use RegistersUsers;
 
@@ -27,8 +27,6 @@ class RegisterController extends CoreController
         $this->middleware('guest');
 
         $this->redirectTo = config('user.redirect_route_after_register', '/');
-
-        parent::__construct();
     }
 
     public function showRegistrationForm()

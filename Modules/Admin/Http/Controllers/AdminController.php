@@ -4,9 +4,9 @@ namespace Modules\Admin\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Modules\Core\Http\Controllers\CoreController;
+use Illuminate\Routing\Controller;
 
-class AdminController extends CoreController
+class AdminController extends Controller
 {
     use AuthenticatesUsers;
 

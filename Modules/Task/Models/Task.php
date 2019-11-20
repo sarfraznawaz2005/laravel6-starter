@@ -30,10 +30,6 @@ class Task extends CoreModel
         'completed',
     ];
 
-    protected $rules = [
-        'description' => 'required|min:5',
-    ];
-
     // Array of uploadable images. These fields need to be existent in your database table
     // https://github.com/qcod/laravel-imageup
     protected static $imageFields = [

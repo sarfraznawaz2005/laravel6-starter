@@ -3,10 +3,10 @@
 namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Modules\Core\Http\Controllers\CoreController;
+use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
-class ResetPasswordController extends CoreController
+class ResetPasswordController extends Controller
 {
     use ResetsPasswords;
 
@@ -22,8 +22,6 @@ class ResetPasswordController extends CoreController
         $this->middleware('guest');
 
         $this->redirectTo = config('user.redirect_route_after_register', '/');
-        
-        parent::__construct();
     }
 
     public function showResetForm(Request $request, $token = null)

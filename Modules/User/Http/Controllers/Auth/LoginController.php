@@ -4,9 +4,9 @@ namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Modules\Core\Http\Controllers\CoreController;
+use Illuminate\Routing\Controller;
 
-class LoginController extends CoreController
+class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
@@ -22,8 +22,6 @@ class LoginController extends CoreController
         $this->middleware('guest')->except('logout');
 
         $this->redirectTo = config('user.redirect_route_after_login', '/');
-
-        parent::__construct();
     }
 
     public function showLoginForm()

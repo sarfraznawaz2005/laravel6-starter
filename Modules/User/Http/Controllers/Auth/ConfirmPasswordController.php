@@ -3,9 +3,9 @@
 namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
-use Modules\Core\Http\Controllers\CoreController;
+use Illuminate\Routing\Controller;
 
-class ConfirmPasswordController extends CoreController
+class ConfirmPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -35,8 +35,6 @@ class ConfirmPasswordController extends CoreController
     public function __construct()
     {
         $this->middleware('auth');
-
-        parent::__construct();
     }
 
     /**
