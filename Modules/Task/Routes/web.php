@@ -11,13 +11,14 @@ Route::group(['middleware' => 'XSSProtection'], static function () {
 
     Route::group(['middleware' => ['auth', 'verified']], static function () {
 
-        Route::get('tasks', '\\' . IndexTask::class)->name('tasks.index');
-        Route::post('tasks', '\\' . StoreTask::class)->name('tasks.store');
-        Route::get('tasks/{task}/edit', '\\' . EditTask::class)->name('tasks.edit');
-        Route::put('tasks/{task}', '\\' . UpdateTask::class)->name('tasks.update');
-        Route::delete('tasks/{task}', '\\' . DestroyTask::class)->name('tasks.destroy');
-        Route::get('tasks/{task}/complete', '\\' . CompleteTask::class)->name('tasks.complete');
-
+        Route::group(['namespace' => '\\'], static function () {
+            Route::get('tasks', IndexTask::class)->name('tasks.index');
+            Route::post('tasks', StoreTask::class)->name('tasks.store');
+            Route::get('tasks/{task}/edit', EditTask::class)->name('tasks.edit');
+            Route::put('tasks/{task}', UpdateTask::class)->name('tasks.update');
+            Route::delete('tasks/{task}', DestroyTask::class)->name('tasks.destroy');
+            Route::get('tasks/{task}/complete', CompleteTask::class)->name('tasks.complete');
+        });
     });
 
 });

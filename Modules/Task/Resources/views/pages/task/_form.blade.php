@@ -1,9 +1,9 @@
 @if (isset($task) && $task->exists)
-    {!! Former::open_for_files()->action(route('task.update', $task))->method('put')->class('validate') !!}
+    {!! Former::open_for_files()->action(route('tasks.update', $task))->method('put')->class('validate') !!}
     {{--{!! Former::setOption('automatic_label', false) !!}--}}
     {!! Former::populate($task) !!}
 @else
-    {!! Former::open_for_files()->action(route('task.store'))->method('post')->class('validate') !!}
+    {!! Former::open_for_files()->action(route('tasks.store'))->method('post')->class('validate') !!}
 @endif
 
 {!! Former::text('description', 'Task Description')->required() !!}

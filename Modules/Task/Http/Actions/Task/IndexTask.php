@@ -4,7 +4,6 @@ namespace Modules\Task\Http\Actions\Task;
 
 use Illuminate\Http\Response;
 use Modules\Task\DataTables\TaskDataTable;
-use Modules\Task\Models\Task;
 use Sarfraznawaz2005\Actions\Action;
 
 class IndexTask extends Action
@@ -37,8 +36,6 @@ class IndexTask extends Action
      */
     protected function jsonResponse()
     {
-        $tasks = Task::where('user_id', user()->id)->get();
-
-        return response()->json($tasks, Response::HTTP_OK);
+        return response()->json(null, Response::HTTP_OK);
     }
 }

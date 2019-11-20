@@ -24,9 +24,9 @@ class TaskDataTable extends DataTable
             ->editColumn('action', function ($object) {
                 $actions = '';
 
-                $actions .= $this->buttonMarkComplete(route('task.complete', [$object]), $object->completed);
-                $actions .= listingEditButton(route('task.edit', [$object]));
-                $actions .= listingDeleteButton(route('task.destroy', [$object]), 'Task');
+                $actions .= $this->buttonMarkComplete(route('tasks.complete', [$object]), $object->completed);
+                $actions .= listingEditButton(route('tasks.edit', [$object]));
+                $actions .= listingDeleteButton(route('tasks.destroy', [$object]), 'Task');
 
                 return tdCenter($actions);
             })
