@@ -3,9 +3,9 @@
 namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Routing\Controller;
+use Modules\Core\Http\Controllers\CoreController;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends CoreController
 {
     use SendsPasswordResetEmails;
 

@@ -3,10 +3,10 @@
 namespace Modules\Admin\Http\Controllers;
 
 use Illuminate\Http\Response;
-use Illuminate\Routing\Controller;
 use Modules\Admin\DataTables\UserDataTable;
+use Modules\Core\Http\Controllers\CoreController;
 
-class UserController extends Controller
+class UserController extends CoreController
 {
     /**
      * Display a listing of the resource.

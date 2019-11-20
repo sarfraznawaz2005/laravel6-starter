@@ -11,12 +11,12 @@ namespace Modules\Crud\Http\Controllers;
 use DB;
 use File;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
+use Modules\Core\Http\Controllers\CoreController;
 use Nwidart\Modules\Facades\Module;
 
-class CrudController extends Controller
+class CrudController extends CoreController
 {
     protected $nonModuleCommands = [
         'make:widget'

@@ -2,9 +2,9 @@
 
 namespace Modules\Main\Http\Controllers;
 
-use Illuminate\Routing\Controller;
+use Modules\Core\Http\Controllers\CoreController;
 
-class MainController extends Controller
+class MainController extends CoreController
 {
     public function __invoke()
     {
