@@ -8,12 +8,8 @@ use Sarfraznawaz2005\Actions\Action;
 
 class IndexTask extends Action
 {
-    protected $dataTable;
-
-    public function __invoke(TaskDataTable $dataTable)
+    public function __invoke()
     {
-        $this->dataTable = $dataTable;
-
         return $this->sendResponse();
     }
 
@@ -26,7 +22,7 @@ class IndexTask extends Action
     {
         title('Task List');
 
-        return $this->dataTable->render('task::pages.task.index');
+        return (new TaskDataTable())->render('task::pages.task.index');
     }
 
     /**
