@@ -1,4 +1,10 @@
 extends CoreController
+
+protected $rules = [
+    'name' => 'required|max:50',
+    'email' => 'required|email|unique:users',
+];
+
 cacheable not working probably
 publish migrate rundev, optimize, etc toolbar
 
