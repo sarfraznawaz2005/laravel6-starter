@@ -54,7 +54,7 @@ class TaskDataTable extends DataTable
     public function query()
     {
         // ->get() has impact on search/filters
-        $query = Task::where('user_id', user()->id)->get();
+        $query = Task::where('user_id', user()->id);
 
         return $this->applyScopes($query);
     }

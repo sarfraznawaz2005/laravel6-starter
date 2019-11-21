@@ -3,6 +3,7 @@
 namespace Modules\Task\Http\Actions\Task;
 
 use Illuminate\Http\Response;
+use Modules\Task\Models\Task;
 use Sarfraznawaz2005\Actions\Action;
 
 class StoreTask extends Action
@@ -12,21 +13,21 @@ class StoreTask extends Action
      *
      * @return array
      */
-    protected function rules(): array
-    {
-        return [];
-    }
+    protected $rules = [
+        'description' => 'required|min:5'
+    ];
 
     /**
      * Perform the action.
      *
+     * @param Task $task
      * @return mixed
      */
-    public function __invoke()
+    public function __invoke(Task $task)
     {
-        //
+        request()->request->add(['user_id' => user()->id ?? 0]);
 
-        return $this->sendResponse();
+        return $this->create($task);
     }
 
     /**
@@ -34,9 +35,14 @@ class StoreTask extends Action
      *
      * @return mixed
      */
-    protected function htmlResponse()
+    protected function html()
     {
-        return 'hi';
+        if (!$this->result) {
+            return back()->withInput()->withErrors($this->errors);
+        }
+
+        flash(self::MESSAGE_ADD, 'success');
+        return back();
     }
 
     /**
@@ -44,8 +50,12 @@ class StoreTask extends Action
      *
      * @return mixed
      */
-    protected function jsonResponse()
+    protected function json()
     {
-        return response()->json(null, Response::HTTP_OK);
+        if (!$this->result) {
+            return response()->json(['result' => false], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json(['result' => true], Response::HTTP_CREATED);
     }
 }

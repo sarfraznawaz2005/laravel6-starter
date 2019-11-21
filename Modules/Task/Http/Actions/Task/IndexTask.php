@@ -4,23 +4,18 @@ namespace Modules\Task\Http\Actions\Task;
 
 use Illuminate\Http\Response;
 use Modules\Task\DataTables\TaskDataTable;
+use Modules\Task\Models\Task;
 use Sarfraznawaz2005\Actions\Action;
 
 class IndexTask extends Action
 {
-    public function __invoke()
-    {
-        return $this->sendResponse();
-    }
+    protected $task;
 
-    /**
-     * Response to be returned in case of web request.
-     *
-     * @return mixed
-     */
-    protected function htmlResponse()
+    public function __invoke(Task $task)
     {
         title('Task List');
+
+        $this->task = $task;
 
         return (new TaskDataTable())->render('task::pages.task.index');
     }
@@ -30,8 +25,8 @@ class IndexTask extends Action
      *
      * @return mixed
      */
-    protected function jsonResponse()
+    protected function json()
     {
-        return response()->json(null, Response::HTTP_OK);
+        return response()->json($this->task->all(), Response::HTTP_OK);
     }
 }
