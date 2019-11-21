@@ -2,6 +2,13 @@ extends CoreController
 cacheable not working probably
 publish migrate rundev, optimize, etc toolbar
 
+https://github.com/rogervila/laravel-autocache
+https://github.com/reibengu/laravel-auto-validation
+https://github.com/matt-daneshvar/laravel-resource-controller
+https://github.com/padosoft/laravel-validable
+https://github.com/blainesch/laravel-pretty-controller
+https://github.com/BashirShallah/laravel_easy_controller
+
 npm outdated
 composer outdated
 
