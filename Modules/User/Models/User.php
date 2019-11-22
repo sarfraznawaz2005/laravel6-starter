@@ -66,15 +66,6 @@ class User extends CoreModel implements
         'remember_token',
     ];
 
-    /**
-     * The validation rules.
-     *
-     * @var array
-     */
-    protected $rules = [
-        'name' => 'required|max:50',
-        'email' => 'required|email|unique:users',
-    ];
 
     ###################################################################
     # RELATIONSHIPS START
