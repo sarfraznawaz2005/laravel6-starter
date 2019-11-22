@@ -5,7 +5,7 @@
     <div class="row">
 
         <div class="col-md-3">
-            <a href="{{route('admin_user_listing')}}" class="widget-link">
+            <a href="{{route('admin.users.index')}}" class="widget-link">
                 <div class="widget-small primary"><i class="icon fa fa-users fa-3x"></i>
                     <div class="info">
                         <h4>Users</h4>

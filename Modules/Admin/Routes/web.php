@@ -1,14 +1,20 @@
 <?php
 
-Route::group(['middleware' => 'XSSProtection'], function () {
-    Route::prefix('admin')->group(function () {
+use Modules\Admin\Http\Actions\Admin\IndexAdmin;
+use Modules\Admin\Http\Actions\Admin\LoginAdmin;
+use Modules\Admin\Http\Actions\Admin\LogoutAdmin;
+use Modules\Admin\Http\Actions\Admin\PanelAdmin;
+use Modules\Admin\Http\Actions\User\IndexUser;
+
+Route::group(['middleware' => 'XSSProtection'], static function () {
+    Route::prefix('admin')->group(static function () {
 
         #===========================================================#
         ### PUBLIC ROUTES START ###
         #===========================================================#
 
-        Route::get('/', 'AdminController')->name('admin_login');
-        Route::post('login', 'AdminController@login');
+        Route::get('/', '\\' . IndexAdmin::class)->name('admin.login');
+        Route::post('login', '\\' . LoginAdmin::class);
 
         ### PUBLIC ROUTES END ###
         #===========================================================#
@@ -16,11 +22,11 @@ Route::group(['middleware' => 'XSSProtection'], function () {
         #===========================================================#
         ### AUTHENTICATED ROUTES START ###
         #===========================================================#
-        Route::group(['middleware' => ['admin', 'verified']], function () {
-            Route::get('logout', 'AdminController@logout')->name('admin_logout');
-            Route::get('panel', 'AdminController@index')->name('admin_panel');
+        Route::group(['middleware' => ['admin', 'verified']], static function () {
+            Route::get('logout', '\\' . LogoutAdmin::class)->name('admin.logout');
+            Route::get('panel', '\\' . PanelAdmin::class)->name('admin.panel');
 
-            Route::get('user', 'UserController')->name('admin_user_listing');
+            Route::get('users', '\\' . IndexUser::class)->name('admin.users.index');
         });
         #===========================================================#
         ### AUTHENTICATED ROUTES END ###

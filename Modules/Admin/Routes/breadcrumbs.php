@@ -1,12 +1,12 @@
 <?php
 
 // Admin Panel
-Breadcrumbs::register('admin_panel', function ($breadcrumbs) {
-    $breadcrumbs->push('Dashboard', route('admin_panel'));
+Breadcrumbs::register('admin.panel', static function ($breadcrumbs) {
+    $breadcrumbs->push('Dashboard', route('admin.panel'));
 });
 
 // User listing
-Breadcrumbs::register('admin_user_listing', function ($breadcrumbs) {
-    $breadcrumbs->parent('admin_panel');
-    $breadcrumbs->push('Users', route('admin_user_listing'));
+Breadcrumbs::register('admin.users.index', static function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.panel');
+    $breadcrumbs->push('Users', route('admin.users.index'));
 });

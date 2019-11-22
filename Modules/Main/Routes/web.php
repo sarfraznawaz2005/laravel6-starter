@@ -1,10 +1,9 @@
 <?php
 
-Route::group(['middleware' => 'XSSProtection'], function () {
+use Modules\Main\Http\Actions\Home\IndexHome;
 
-    Route::get('/', 'MainController')->name('home');
-    Route::get('/home', 'MainController')->name('home');
-
+Route::group(['middleware' => 'XSSProtection'], static function () {
+    Route::get('{url}', '\\' .IndexHome::class)->where(['url' => '/|home|'])->name('home');
 });
 
 

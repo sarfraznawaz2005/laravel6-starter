@@ -1,12 +1,12 @@
 <?php
 
 // Task
-Breadcrumbs::register('task.index', function ($breadcrumbs) {
+Breadcrumbs::register('tasks.index', static function ($breadcrumbs) {
     $breadcrumbs->push('Task List', route('task.index'));
 });
 
 // Edit Task
-Breadcrumbs::register('task.edit', function ($breadcrumbs) {
-    $breadcrumbs->parent('task.index');
+Breadcrumbs::register('tasks.edit', static function ($breadcrumbs) {
+    $breadcrumbs->parent('tasks.index');
     $breadcrumbs->push('Edit Task');
 });

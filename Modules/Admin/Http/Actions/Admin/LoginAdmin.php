@@ -1,33 +1,24 @@
 <?php
 
-namespace Modules\Admin\Http\Controllers;
+namespace Modules\Admin\Http\Actions\Admin;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Sarfraznawaz2005\Actions\Action;
 
-class AdminController
+class LoginAdmin extends Action
 {
     use AuthenticatesUsers;
 
     protected $redirectTo = 'admin/panel';
 
-    public function __invoke()
-    {
-        if (auth()->check() && user()->isSuperAdmin()) {
-            return redirect(route('admin_panel'));
-        }
-
-        return view('admin::pages.login.index');
-    }
-
-    public function index()
-    {
-        title('Dashboard');
-
-        return view('admin::pages.panel.index');
-    }
-
-    public function login(Request $request)
+    /**
+     * Perform the action.
+     *
+     * @return mixed
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function __invoke(Request $request)
     {
         $this->validateLogin($request);
 
@@ -43,10 +34,10 @@ class AdminController
         $credentials = $this->credentials($request);
 
         // also check for "admin" status
-        $credentials['admin'] = 1;
+        $credentials['is_admin'] = 1;
 
         // also check if user is active
-        $credentials['active'] = 1;
+        $credentials['is_active'] = 1;
 
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
 
@@ -62,24 +53,5 @@ class AdminController
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
-    }
-
-    /**
-     * Log the user out of admin.
-     *
-     * @param Request $request
-     * @return Redirect
-     */
-    public function logout(Request $request)
-    {
-        $this->guard()->logout();
-
-        $request->session()->flush();
-        $request->session()->regenerate();
-        $request->session()->invalidate();
-
-        noty('You are logged out.', 'warning');
-
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : 'admin');
     }
 }

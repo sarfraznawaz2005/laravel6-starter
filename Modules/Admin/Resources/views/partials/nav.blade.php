@@ -1,5 +1,5 @@
 <header class="app-header">
-    <a class="app-header__logo" href="{{route('admin_panel')}}">{{appName()}}</a>
+    <a class="app-header__logo" href="{{route('admin.panel')}}">{{appName()}}</a>
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar"></a>
 
     <!-- Navbar Left -->
@@ -155,7 +155,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="{{route('admin_logout')}}">
+                    <a class="dropdown-item" href="{{route('admin.logout')}}">
                         <i class="fa fa-sign-out fa-lg"></i> Logout
                     </a>
                 </li>

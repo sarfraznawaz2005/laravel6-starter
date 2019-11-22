@@ -1,8 +1,10 @@
 <?php
 
-namespace Modules\Main\Http\Controllers;
+namespace Modules\Main\Http\Actions\Home;
 
-class MainController
+use Sarfraznawaz2005\Actions\Action;
+
+class IndexHome extends Action
 {
     public function __invoke()
     {

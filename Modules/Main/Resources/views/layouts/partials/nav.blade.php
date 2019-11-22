@@ -32,7 +32,7 @@
                         @if(user()->isSuperAdmin())
                             @if(Module::isEnabled('Admin'))
                                 <li class="nav-item">
-                                    <a class="nav-link" target="_blank" href="{{route('admin_login')}}">
+                                    <a class="nav-link" target="_blank" href="{{route('admin.login')}}">
                                         <i class="fa fa-cog"></i> Admin Panel
                                     </a>
                                 </li>

@@ -3,14 +3,14 @@
 <aside class="app-sidebar animated bounceInLeft">
     <ul class="app-menu">
         <li>
-            <a class="app-menu__item {{active('admin_panel')}}" href="{{route('admin_panel')}}">
+            <a class="app-menu__item {{active('admin.panel')}}" href="{{route('admin.panel')}}">
                 <i class="app-menu__icon fa fa-dashboard"></i>
                 <span class="app-menu__label">Dashboard</span>
             </a>
         </li>
 
         <li>
-            <a class="app-menu__item {{active('admin_user_listing')}}" href="{{route('admin_user_listing')}}">
+            <a class="app-menu__item {{active('admin.users.index')}}" href="{{route('admin.users.index')}}">
                 <i class="app-menu__icon fa fa-pencil"></i>
                 <span class="app-menu__label">Users</span>
             </a>
@@ -22,7 +22,7 @@
             </a>
         </li>
 
-        <li class="treeview {{active('admin_panel', 'is-expanded')}}">
+        <li class="treeview {{active('admin.panel', 'is-expanded')}}">
             <a class="app-menu__item" href="#" data-toggle="treeview">
                 <i class="app-menu__icon fa fa-laptop"></i>
                 <span class="app-menu__label">Sub Level</span>
@@ -31,7 +31,7 @@
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="#">Link 1</a></li>
                 <li><a class="treeview-item" href="#">Link 2</a></li>
-                <li><a class="treeview-item {{active('admin_panel')}}" href="#">Link 3</a></li>
+                <li><a class="treeview-item {{active('admin.panel')}}" href="#">Link 3</a></li>
             </ul>
         </li>
 
