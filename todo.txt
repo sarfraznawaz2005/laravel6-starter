@@ -1,5 +1,3 @@
-Action suffix
-wantsJson
 extends Controller|CoreController
 
 protected $rules = [
