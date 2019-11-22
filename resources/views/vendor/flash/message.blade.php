@@ -8,16 +8,15 @@
     @else
         <div class="animated shake alert
                     alert-{{ $message['level'] }}
-                    {{ $message['important'] ? 'alert-important' : '' }}"
-                    role="alert"
+        {{ $message['important'] ? 'alert-important' : '' }}"
+             role="alert"
         >
-            @if ($message['important'])
-                <button type="button"
-                        class="close"
-                        data-dismiss="alert"
-                        aria-hidden="true"
-                >&times;</button>
-            @endif
+            <button type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-hidden="true"
+            >&times;
+            </button>
 
             {!! $message['message'] !!}
         </div>
