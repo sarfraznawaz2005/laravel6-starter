@@ -1,4 +1,4 @@
-extends Controller|CoreController
+Controller
 
 protected $rules = [
     'name' => 'required|max:50',
