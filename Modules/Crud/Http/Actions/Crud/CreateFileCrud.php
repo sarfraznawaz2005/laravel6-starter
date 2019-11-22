@@ -8,6 +8,15 @@ class CreateFileCrud extends Action
 {
     use CrudTrait;
 
+    /**
+     * Define any validation rules.
+     */
+    protected $rules = [
+        'name' => 'required|min:3',
+        'module' => 'required',
+        'command' => 'required'
+    ];
+
     public function __invoke()
     {
         $name = ucwords(trim(request()->get('name')));

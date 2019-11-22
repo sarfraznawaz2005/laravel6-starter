@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Artisan;
 
 trait CrudTrait
 {
-
     protected $nonModuleCommands = [
         'make:action',
         'make:widget'
