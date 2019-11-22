@@ -3,30 +3,21 @@
 namespace Modules\Task\Http\Actions\Task;
 
 use Illuminate\Http\Response;
+use Modules\Task\Models\Task;
 use Sarfraznawaz2005\Actions\Action;
 
 class DestroyTask extends Action
 {
     /**
-     * Define any validation rules.
-     *
-     * @return array
-     */
-    protected function rules(): array
-    {
-        return [];
-    }
-
-    /**
      * Perform the action.
      *
+     * @param Task $task
      * @return mixed
+     * @throws \Exception
      */
-    public function __invoke()
+    public function __invoke(Task $task)
     {
-        //
-
-        return $this->sendResponse();
+        return $this->delete($task);
     }
 
     /**
@@ -34,9 +25,14 @@ class DestroyTask extends Action
      *
      * @return mixed
      */
-    protected function htmlResponse()
+    protected function html()
     {
-        return 'hi';
+        if (!$this->result) {
+            return back()->withInput()->withErrors(self::MESSAGE_FAIL);
+        }
+
+        flash(self::MESSAGE_DELETE, 'success');
+        return back();
     }
 
     /**
@@ -44,8 +40,12 @@ class DestroyTask extends Action
      *
      * @return mixed
      */
-    protected function jsonResponse()
+    protected function json()
     {
-        return response()->json(null, Response::HTTP_OK);
+        if (!$this->result) {
+            return response()->json(['result' => false], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json(['result' => true], Response::HTTP_NO_CONTENT);
     }
 }

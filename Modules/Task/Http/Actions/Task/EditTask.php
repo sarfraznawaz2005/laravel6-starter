@@ -3,30 +3,22 @@
 namespace Modules\Task\Http\Actions\Task;
 
 use Illuminate\Http\Response;
+use Modules\Task\Models\Task;
 use Sarfraznawaz2005\Actions\Action;
 
 class EditTask extends Action
 {
-    /**
-     * Define any validation rules.
-     *
-     * @return array
-     */
-    protected function rules(): array
-    {
-        return [];
-    }
+    protected $task;
 
     /**
      * Perform the action.
      *
+     * @param Task $task
      * @return mixed
      */
-    public function __invoke()
+    public function __invoke(Task $task)
     {
-        //
-
-        return $this->sendResponse();
+        $this->task = $task;
     }
 
     /**
@@ -34,9 +26,11 @@ class EditTask extends Action
      *
      * @return mixed
      */
-    protected function htmlResponse()
+    protected function html()
     {
-        return 'hi';
+        title('Edit Task');
+
+        return view('task::pages.task.edit')->with(['task' => $this->task]);
     }
 
     /**
@@ -44,8 +38,8 @@ class EditTask extends Action
      *
      * @return mixed
      */
-    protected function jsonResponse()
+    protected function json()
     {
-        return response()->json(null, Response::HTTP_OK);
+        return response()->json($this->task, Response::HTTP_OK);
     }
 }

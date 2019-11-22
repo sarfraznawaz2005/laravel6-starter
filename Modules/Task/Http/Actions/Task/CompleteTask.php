@@ -3,30 +3,26 @@
 namespace Modules\Task\Http\Actions\Task;
 
 use Illuminate\Http\Response;
+use Modules\Task\Models\Task;
 use Sarfraznawaz2005\Actions\Action;
 
 class CompleteTask extends Action
 {
-    /**
-     * Define any validation rules.
-     *
-     * @return array
-     */
-    protected function rules(): array
-    {
-        return [];
-    }
+    protected $task;
 
     /**
      * Perform the action.
      *
+     * @param Task $task
      * @return mixed
      */
-    public function __invoke()
+    public function __invoke(Task $task)
     {
-        //
+        $this->task = $task;
 
-        return $this->sendResponse();
+        $this->task->completed = !$this->task->completed;
+
+        return $task->save();
     }
 
     /**
@@ -34,9 +30,14 @@ class CompleteTask extends Action
      *
      * @return mixed
      */
-    protected function htmlResponse()
+    protected function html()
     {
-        return 'hi';
+        if (!$this->result) {
+            return back()->withInput()->withErrors($this->errors);
+        }
+
+        flash(self::MESSAGE_UPDATE, 'success');
+        return back();
     }
 
     /**
@@ -44,8 +45,12 @@ class CompleteTask extends Action
      *
      * @return mixed
      */
-    protected function jsonResponse()
+    protected function json()
     {
-        return response()->json(null, Response::HTTP_OK);
+        if (!$this->result) {
+            return response()->json(['result' => false], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json($this->task, Response::HTTP_OK);
     }
 }

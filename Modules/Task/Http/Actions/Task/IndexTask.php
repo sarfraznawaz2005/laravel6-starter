@@ -11,11 +11,25 @@ class IndexTask extends Action
 {
     protected $task;
 
+    /**
+     * Perform the action.
+     *
+     * @param Task $task
+     * @return mixed
+     */
     public function __invoke(Task $task)
     {
-        title('Task List');
-
         $this->task = $task;
+    }
+
+    /**
+     * Response to be returned in case of web request.
+     *
+     * @return mixed
+     */
+    protected function html()
+    {
+        title('Task List');
 
         return (new TaskDataTable())->render('task::pages.task.index');
     }

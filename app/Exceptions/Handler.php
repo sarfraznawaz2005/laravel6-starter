@@ -3,11 +3,16 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
+use Log;
 use Mail;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -33,7 +38,7 @@ class Handler extends ExceptionHandler
     /**
      * Report or log an exception.
      *
-     * @param \Exception $exception
+     * @param Exception $exception
      * @return void
      * @throws Exception
      */
@@ -49,7 +54,7 @@ class Handler extends ExceptionHandler
     /**
      * Sends an email to the developer about the exception.
      *
-     * @param \Exception $exception
+     * @param Exception $exception
      * @return void
      */
     protected function notifyDevTeam(Exception $exception)
@@ -82,7 +87,7 @@ class Handler extends ExceptionHandler
                 }
 
             } catch (Exception $ex) {
-                \Log::warning('Could not send error email to dev team!');
+                Log::warning('Could not send error email to dev team!');
             }
         }
     }
@@ -90,23 +95,41 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Exception $exception
-     * @return \Illuminate\Http\Response|string
+     * @param Request $request
+     * @param Exception $exception
+     * @return Response|string
      */
     public function render($request, Exception $exception)
     {
         // redirect user back in case of token mismatch error
         if ($exception instanceof TokenMismatchException) {
 
-            if ($request->ajax()) {
-                return 'Sorry, your session seems to have expired. Please try again.';
+            if ($request->ajax() || $request->wantsJson()) {
+                return 'Sorry, your session seems to have expired.';
             }
 
             return redirect()
                 ->back()
                 ->withErrors(['error' => 'Sorry, your session seems to have expired. Please try again.'])
                 ->withInput($request->except('password', 'password_confirmation', '_token'));
+        }
+
+        if ($exception instanceof ModelNotFoundException && $request->wantsJson()) {
+            return response()->json([
+                'data' => 'Resource not found'
+            ], 404);
+        }
+
+        if ($exception instanceof NotFoundHttpException && $request->wantsJson()) {
+            return response()->json([
+                'data' => 'Resource not found'
+            ], 404);
+        }
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'error' => $exception->getMessage()
+            ], 500);
         }
 
         return parent::render($request, $exception);

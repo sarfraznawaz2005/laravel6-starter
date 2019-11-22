@@ -25,7 +25,7 @@ class StoreTask extends Action
      */
     public function __invoke(Task $task)
     {
-        request()->request->add(['user_id' => user()->id ?? 0]);
+        request()->request->add(['user_id' => user()->id ?? (request()->user_id ?? 0)]);
 
         return $this->create($task);
     }

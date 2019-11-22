@@ -20,8 +20,8 @@ class CreateTasksTable extends Migration
             $table->string('file')->nullable();
             $table->boolean('completed')->default(false);
 
-            $table->unsignedInteger('created_by')->default(0);
-            $table->unsignedInteger('updated_by')->default(0);
+            $table->unsignedInteger('created_by')->default(0)->nullable();
+            $table->unsignedInteger('updated_by')->default(0)->nullable();
 
             $table->timestamps();
         });

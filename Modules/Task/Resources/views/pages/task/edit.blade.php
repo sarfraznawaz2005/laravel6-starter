@@ -5,7 +5,7 @@
     @card(['type' => 'white', 'header_type' => 'light', 'classes' => 'mb3'])
     @slot('header')
         <div class="pull-left">
-            <a href="{{route('task.index')}}" class="btn btn-secondary">
+            <a href="{{route('tasks.index')}}" class="btn btn-secondary">
                 <i class="fa fa-arrow-circle-left"></i> Back to Tasks
             </a>
         </div>

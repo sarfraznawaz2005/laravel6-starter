@@ -1,4 +1,6 @@
-extends CoreController
+Action suffix
+wantsJson
+extends Controller|CoreController
 
 protected $rules = [
     'name' => 'required|max:50',
