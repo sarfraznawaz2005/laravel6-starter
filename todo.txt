@@ -5,6 +5,7 @@ protected $rules = [
     'email' => 'required|email|unique:users',
 ];
 
+not hash in case of api
 cacheable not working probably
 publish migrate rundev, optimize, etc toolbar
 
