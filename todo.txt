@@ -1,9 +1,5 @@
 not hash in case of api
-cacheable not working probably
 publish migrate rundev, optimize, etc toolbar
-
-https://github.com/webparking/laravel-queue-ensurer
-https://github.com/rogervila/laravel-autocache
 
 npm outdated
 composer outdated
@@ -18,5 +14,7 @@ ISSUES:
 - vendor cleanup command too slow
 - validate forms plugin does not show red borders - in the mean time, i added css for red borders in loader.css file.
 
+https://github.com/webparking/laravel-queue-ensurer
+https://github.com/rogervila/laravel-autocache
 
 
