@@ -135,7 +135,6 @@
                         {!! Former::select('command')->label('Type')->style('width:100%;')->required()->options([
                             ''=>'Select',
                             'make:action' => 'Action',
-                            'module:make-controller' => 'Controller',
                             'module:make-model' => 'Model',
                             'module:make-migration' => 'Migration',
                             'module:make-command' => 'Command',
