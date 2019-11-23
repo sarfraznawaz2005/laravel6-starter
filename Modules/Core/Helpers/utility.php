@@ -559,3 +559,21 @@ function isIE()
 
     return false;
 }
+
+function flashBack($message, $type = 'success')
+{
+    flash($message, $type);
+
+    return back();
+}
+
+function flashBackErrors($errors, $withInput = true)
+{
+    $back = back()->withErrors($errors);
+
+    if ($withInput) {
+        $back = $back->withInput();
+    }
+
+    return $back;
+}

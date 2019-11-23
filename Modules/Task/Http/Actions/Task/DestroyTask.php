@@ -28,11 +28,10 @@ class DestroyTask extends Action
     protected function html()
     {
         if (!$this->result) {
-            return back()->withInput()->withErrors(self::MESSAGE_FAIL);
+            return flashBackErrors(self::MESSAGE_FAIL);
         }
 
-        noty(self::MESSAGE_DELETE, 'success');
-        return back();
+        return flashBack(self::MESSAGE_DELETE);
     }
 
     /**

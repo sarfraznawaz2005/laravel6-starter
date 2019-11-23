@@ -33,11 +33,10 @@ class CompleteTask extends Action
     protected function html()
     {
         if (!$this->result) {
-            return back()->withInput()->withErrors($this->errors);
+            return flashBackErrors($this->errors);
         }
 
-        noty(self::MESSAGE_UPDATE, 'success');
-        return back();
+        return flashBack(self::MESSAGE_UPDATE);
     }
 
     /**
