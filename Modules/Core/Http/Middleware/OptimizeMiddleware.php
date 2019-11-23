@@ -3,13 +3,15 @@
 namespace Modules\Core\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class OptimizeMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param \Closure $next
      *
      * @return mixed
@@ -18,7 +20,7 @@ class OptimizeMiddleware
     {
         $response = $next($request);
 
-        if ($response instanceof \Symfony\Component\HttpFoundation\BinaryFileResponse) {
+        if ($response instanceof BinaryFileResponse) {
             return $response;
         }
 
@@ -51,7 +53,7 @@ class OptimizeMiddleware
 
         $newBuffer = preg_replace($regEx, " ", $buffer);
 
-        if (!is_null($newBuffer)) {
+        if ($newBuffer !== null) {
             $buffer = $newBuffer;
         }
 
