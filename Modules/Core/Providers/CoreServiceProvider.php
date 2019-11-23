@@ -15,7 +15,6 @@ use Modules\Core\Console\VendorCleanup;
 use Modules\Core\Http\Middleware\EnvLogoMiddleware;
 use Modules\Core\Http\Middleware\HttpsProtocol;
 use Modules\Core\Http\Middleware\OptimizeMiddleware;
-use Modules\Core\Http\Middleware\XSSProtection;
 use Sarfraznawaz2005\Loading\Http\Middleware\LoadingMiddleware;
 
 class CoreServiceProvider extends ServiceProvider
@@ -39,7 +38,7 @@ class CoreServiceProvider extends ServiceProvider
         #################################################
 
         // route middlewares
-        $router->aliasMiddleware('XSSProtection', XSSProtection::class);
+        //$router->aliasMiddleware('FooExample', FooExample::class);
 
         if (config('core.settings.minify_html_response')) {
             $kernel->pushMiddleware(OptimizeMiddleware::class);
@@ -90,7 +89,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->register(RouteServiceProvider::class);
+        //
     }
 
     /**

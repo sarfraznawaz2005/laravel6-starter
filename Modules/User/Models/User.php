@@ -13,6 +13,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\CoreModel;
+use Modules\Core\Traits\Model\CleanHTMLTrait;
 use Modules\Core\Traits\Model\PurgeTrait;
 use Modules\Task\Models\Task;
 use Modules\User\Notifications\VerifyEmail;
@@ -33,6 +34,10 @@ class User extends CoreModel implements
     protected $purge = [
         'current_password',
     ];
+
+    // to strip html tags
+    use CleanHTMLTrait;
+    protected $clean = ['name', 'email', 'password'];
 
     protected $appends = ['full_name'];
 

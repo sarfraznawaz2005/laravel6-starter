@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CoreModel extends Model
 {
-    # added to get Cacheable trait working because Ardent was changing this function
-    # which was affecting Cacheable trait
+    # added to get CacheTrait trait working because Ardent was changing this function
+    # which was affecting CacheTrait trait
     public function newQueryWithoutScopes()
     {
         $builder = $this->newEloquentBuilder(

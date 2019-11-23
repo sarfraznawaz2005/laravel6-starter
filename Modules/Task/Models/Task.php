@@ -6,6 +6,7 @@ use Balping\HashSlug\HasHashSlug;
 use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\CacheTrait\CacheTrait;
 use Modules\Core\Traits\Model\AuthorTrait;
+use Modules\Core\Traits\Model\CleanHTMLTrait;
 use Modules\User\Models\User;
 use QCod\ImageUp\HasImageUploads;
 
@@ -22,6 +23,10 @@ class Task extends CoreModel
 
     // to upload images
     use HasImageUploads;
+
+    // to strip html tags
+    use CleanHTMLTrait;
+    protected $clean = ['description'];
 
     protected $fillable = [
         'user_id',
