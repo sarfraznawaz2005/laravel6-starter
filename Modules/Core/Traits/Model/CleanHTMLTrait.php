@@ -18,7 +18,11 @@ trait CleanHTMLTrait
      */
     public function setAttribute($key, $value)
     {
-        // call the parent attribute setting
+        // convert boolean false into 0
+        if (is_bool($value) && !$value) {
+            $value = 0;
+        }
+
         parent::setAttribute($key, $this->tryToCleanAttributeValue($key, $value));
     }
 
