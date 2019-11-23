@@ -35,7 +35,7 @@ trait SlugTrait
     /**
      * Returns the slug collection.
      *
-     * @return void
+     * @return array|void
      */
     public function getSlugAttribute()
     {
@@ -50,6 +50,7 @@ trait SlugTrait
      * Adds slug attributes to the dataset, used before saving.
      *
      * @return void
+     * @throws Exception
      */
     public function slugAttributes()
     {
@@ -163,7 +164,7 @@ trait SlugTrait
      *
      * @return string
      */
-    public function getSluggableSeparator()
+    public function getSluggableSeparator(): string
     {
         return defined('static::SLUG_SEPARATOR') ? static::SLUG_SEPARATOR : '-';
     }

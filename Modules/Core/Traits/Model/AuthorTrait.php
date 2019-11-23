@@ -14,11 +14,11 @@ use Illuminate\Database\Eloquent\Model;
 trait AuthorTrait
 {
     /**
-     * Whether we're currently maintaing player.
+     * Whether we're currently maintaining author.
      *
      * @param bool
      */
-    protected $logPlayer = true;
+    protected $logAuthor = true;
 
     public static function bootAuthorTrait()
     {
@@ -33,7 +33,7 @@ trait AuthorTrait
     public static function registerListeners()
     {
         static::creating(function (Model $model) {
-            if (!$model->isLoggingPlayer()) {
+            if (!$model->isLoggingAuthor()) {
                 return;
             }
 
@@ -42,7 +42,7 @@ trait AuthorTrait
         });
 
         static::updating(function (Model $model) {
-            if (!$model->isLoggingPlayer()) {
+            if (!$model->isLoggingAuthor()) {
                 return;
             }
 
@@ -51,7 +51,7 @@ trait AuthorTrait
 
         if (static::usingSoftDeletes()) {
             static::deleting(function (Model $model) {
-                if (!$model->isLoggingPlayer()) {
+                if (!$model->isLoggingAuthor()) {
                     return;
                 }
 
@@ -60,7 +60,7 @@ trait AuthorTrait
             });
 
             static::restoring(function (Model $model) {
-                if (!$model->isLoggingPlayer()) {
+                if (!$model->isLoggingAuthor()) {
                     return;
                 }
 
@@ -78,9 +78,10 @@ trait AuthorTrait
     {
         static $usingSoftDeletes;
 
-        if (is_null($usingSoftDeletes)) {
-            return $usingSoftDeletes = in_array('Illuminate\Database\Eloquent\SoftDeletes',
-                class_uses(get_called_class()));
+        if ($usingSoftDeletes === null) {
+            return $usingSoftDeletes = in_array(
+                'Illuminate\Database\Eloquent\SoftDeletes', class_uses(get_called_class()), true
+            );
         }
 
         return $usingSoftDeletes;
@@ -111,33 +112,33 @@ trait AuthorTrait
     }
 
     /**
-     * Check if we're maintaing player on the model.
+     * Check if we're maintaining author on the model.
      *
      * @return bool
      */
-    public function isLoggingPlayer()
+    public function isLoggingAuthor(): bool
     {
-        return $this->logPlayer;
+        return $this->logAuthor;
     }
 
     /**
-     * Stop maintaining player on the model.
+     * Stop maintaining author on the model.
      *
      * @return void
      */
-    public function disableLoggingPlayer()
+    public function disableLoggingAuthor()
     {
-        $this->logPlayer = false;
+        $this->logAuthor = false;
     }
 
     /**
-     * Start maintaining player on the model.
+     * Start maintaining author on the model.
      *
      * @return void
      */
-    public function enableLoggingPlayer()
+    public function enableLoggingAuthor()
     {
-        $this->logPlayer = true;
+        $this->logAuthor = true;
     }
 
     /**
@@ -145,7 +146,7 @@ trait AuthorTrait
      *
      * @return string
      */
-    protected function getUserClass()
+    protected function getUserClass(): string
     {
         if (get_class(auth()) === 'Illuminate\Auth\Guard') {
             return auth()->getProvider()->getModel();

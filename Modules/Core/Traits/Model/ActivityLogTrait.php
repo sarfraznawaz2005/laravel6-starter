@@ -36,11 +36,11 @@ use Illuminate\Database\Eloquent\Model;
 trait ActivityLogTrait
 {
     /**
-     * Whether we're currently maintaing model log.
+     * Whether we're currently maintaining model log.
      *
      * @param bool
      */
-    protected $modelLoggerEnabled = true;
+    protected $ActivityLogEnabled = true;
 
     /**
      * Name of model used in description. Should be specified in model
@@ -64,7 +64,7 @@ trait ActivityLogTrait
     {
         $userid = auth()->user() ? auth()->user()->id : '0';
         $username = auth()->user() ? auth()->user()->fullname : '';
-        $modelName = isset(static::$modelLoggerName) ? static::$modelLoggerName : null;
+        $modelName = static::$modelLoggerName ?? null;
 
         if (!$modelName) {
             $modelName = explode('\\', get_called_class());
@@ -156,8 +156,8 @@ trait ActivityLogTrait
      *
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
-        return $this->modelLoggerEnabled;
+        return $this->ActivityLogEnabled;
     }
 }
