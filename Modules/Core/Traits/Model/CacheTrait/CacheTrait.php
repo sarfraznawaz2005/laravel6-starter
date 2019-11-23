@@ -6,14 +6,14 @@
  * Time: 1:57 PM
  */
 
-namespace Modules\Core\Traits\Model\Cacheable;
+namespace Modules\Core\Traits\Model\CacheTrait;
 
 use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Container\Container;
 
-trait Cacheable
+trait CacheTrait
 {
     /**
      * The IoC container instance.
@@ -99,7 +99,7 @@ trait Cacheable
      *
      * @return void
      */
-    public static function bootCacheable()
+    public static function bootCacheTrait()
     {
         static::updated(function (Model $cachedModel) {
             if ($cachedModel->isCacheClearEnabled() && in_array('update', $cachedModel->cacheClearOn)) {

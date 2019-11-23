@@ -13,7 +13,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\CoreModel;
-use Modules\Core\Traits\Model\Purgeable;
+use Modules\Core\Traits\Model\PurgeTrait;
 use Modules\Task\Models\Task;
 use Modules\User\Notifications\VerifyEmail;
 
@@ -29,7 +29,7 @@ class User extends CoreModel implements
     // automatic fake model id
     use HasHashSlug;
 
-    use Purgeable;
+    use PurgeTrait;
     protected $purge = [
         'current_password',
     ];

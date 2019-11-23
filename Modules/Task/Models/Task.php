@@ -4,21 +4,21 @@ namespace Modules\Task\Models;
 
 use Balping\HashSlug\HasHashSlug;
 use Modules\Core\Models\CoreModel;
-use Modules\Core\Traits\Model\Cacheable\Cacheable;
-use Modules\Core\Traits\Model\Playable;
+use Modules\Core\Traits\Model\CacheTrait\CacheTrait;
+use Modules\Core\Traits\Model\AuthorTrait;
 use Modules\User\Models\User;
 use QCod\ImageUp\HasImageUploads;
 
 class Task extends CoreModel
 {
     // maintains created_by, updated_by and deleted_by
-    use Playable;
+    use AuthorTrait;
 
     // automatic fake model id
     use HasHashSlug;
 
     // cache queries on the model
-    use Cacheable;
+    use CacheTrait;
 
     // to upload images
     use HasImageUploads;

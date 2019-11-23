@@ -6,7 +6,7 @@
  * Time: 1:57 PM
  */
 
-namespace Modules\Core\Traits\Model\Cacheable;
+namespace Modules\Core\Traits\Model\CacheTrait;
 
 use Illuminate\Database\Eloquent\Builder;
 

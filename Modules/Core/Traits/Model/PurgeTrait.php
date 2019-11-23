@@ -2,7 +2,7 @@
 
 namespace Modules\Core\Traits\Model;
 
-trait Purgeable
+trait PurgeTrait
 {
     /**
      * @var array List of attribute names which should not be saved to the database.
@@ -20,7 +20,7 @@ trait Purgeable
      *
      * @return void
      */
-    public static function bootPurgeable()
+    public static function bootPurgeTrait()
     {
         /*
          * Remove any purge attributes from the data set

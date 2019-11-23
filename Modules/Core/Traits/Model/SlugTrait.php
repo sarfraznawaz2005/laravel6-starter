@@ -5,7 +5,7 @@ namespace Modules\Core\Traits\Model;
 use Exception;
 use Illuminate\Support\Str;
 
-trait Sluggable
+trait SlugTrait
 {
     /**
      * @var array List of attributes to automatically generate unique URL names (slugs) for.
@@ -18,7 +18,7 @@ trait Sluggable
      *
      * @return void
      */
-    public static function bootSluggable()
+    public static function bootSlugTrait()
     {
         /*
          * Set slugged attributes on new records

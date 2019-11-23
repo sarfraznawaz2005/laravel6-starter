@@ -33,7 +33,7 @@ namespace Modules\Core\Traits\Model;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
-trait ModelLogger
+trait ActivityLogTrait
 {
     /**
      * Whether we're currently maintaing model log.
@@ -50,7 +50,7 @@ trait ModelLogger
     //protected static $modelLoggerName = null;
 
 
-    public static function bootModelLogger()
+    public static function bootActivityLogTrait()
     {
         static::registerModelLogListeners();
     }

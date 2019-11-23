@@ -11,7 +11,7 @@ namespace Modules\Core\Traits\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-trait Playable
+trait AuthorTrait
 {
     /**
      * Whether we're currently maintaing player.
@@ -20,7 +20,7 @@ trait Playable
      */
     protected $logPlayer = true;
 
-    public static function bootPlayable()
+    public static function bootAuthorTrait()
     {
         static::registerListeners();
     }
