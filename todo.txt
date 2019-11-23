@@ -1,4 +1,4 @@
-not hash in case of api
+not hash url in case of api
 publish migrate rundev, optimize, etc toolbar
 
 npm outdated
