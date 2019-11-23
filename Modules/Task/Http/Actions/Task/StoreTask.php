@@ -41,7 +41,7 @@ class StoreTask extends Action
             return back()->withInput()->withErrors($this->errors);
         }
 
-        flash(self::MESSAGE_ADD, 'success');
+        noty(self::MESSAGE_ADD, 'success');
         return back();
     }
 

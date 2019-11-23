@@ -31,7 +31,7 @@ class DestroyTask extends Action
             return back()->withInput()->withErrors(self::MESSAGE_FAIL);
         }
 
-        flash(self::MESSAGE_DELETE, 'success');
+        noty(self::MESSAGE_DELETE, 'success');
         return back();
     }
 

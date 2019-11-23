@@ -39,7 +39,7 @@ class UpdateTask extends Action
             return back()->withInput()->withErrors($this->errors);
         }
 
-        flash(self::MESSAGE_UPDATE, 'success');
+        noty(self::MESSAGE_UPDATE, 'success');
         return back();
     }
 
