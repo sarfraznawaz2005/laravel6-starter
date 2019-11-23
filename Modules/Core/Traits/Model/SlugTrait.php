@@ -8,9 +8,9 @@ use Illuminate\Support\Str;
 trait SlugTrait
 {
     /**
-     * @var array List of attributes to automatically generate unique URL names (slugs) for.
+     * array List of attributes to automatically generate unique URL names (slugs) for.
      *
-     * protected $slugs = [];
+     * protected $slugs = ['your_field1', 'your_field2'];
      */
 
     /**

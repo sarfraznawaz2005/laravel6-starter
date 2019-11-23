@@ -5,9 +5,9 @@ namespace Modules\Core\Traits\Model;
 trait PurgeTrait
 {
     /**
-     * @var array List of attribute names which should not be saved to the database.
+     * array List of attribute names which should not be saved to the database.
      *
-     * protected $purge = [];
+     * protected $purge = ['your_field1', 'your_field2'];
      */
 
     /**
