@@ -168,19 +168,10 @@ trait CrudTrait
 
     protected function optimize(): void
     {
-        $output = '';
-
         Artisan::call('clear-compiled');
-        $output .= Artisan::output();
         Artisan::call('cache:clear');
-        $output .= Artisan::output();
         Artisan::call('view:clear');
-        $output .= Artisan::output();
         Artisan::call('config:clear');
-        $output .= Artisan::output();
         Artisan::call('app:cleanup');
-        $output .= Artisan::output();
-
-        //echo $output;exit;
     }
 }

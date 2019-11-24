@@ -22,7 +22,7 @@ class MigrateCrud extends Action
         $this->deleteMigratedFiles();
 
         Artisan::call('migrate', ['--force' => true]);
-        $output .= Artisan::output();
+        $output .= trim(Artisan::output());
 
         flash($output ? nl2br($output) : 'Nothing to migrate.', 'success');
 

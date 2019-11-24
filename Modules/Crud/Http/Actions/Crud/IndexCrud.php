@@ -20,7 +20,7 @@ class IndexCrud extends Action
     protected function areMigrationsPending()
     {
         Artisan::call('migrate:status');
-        $output = Artisan::output();
+        $output = trim(Artisan::output());
 
         if (Str::contains(trim($output), 'No migrations')) {
             return false;

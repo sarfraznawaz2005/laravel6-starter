@@ -21,16 +21,16 @@ class PublishCrud extends Action
 
         Artisan::call('vendor:publish', ['--all' => true]);
 
-        $output .= Artisan::output();
+        $output .= trim(Artisan::output());
         Artisan::call('module:publish-config', ['--force' => true]);
-        $output .= Artisan::output();
+        $output .= trim(Artisan::output());
         Artisan::call('module:publish-migration');
-        $output .= Artisan::output();
+        $output .= trim(Artisan::output());
         Artisan::call('module:publish-translation');
-        $output .= Artisan::output();
+        $output .= trim(Artisan::output());
 
         Artisan::call('module:publish');
-        $output .= Artisan::output();
+        $output .= trim(Artisan::output());
 
         //echo $output;exit;
 
