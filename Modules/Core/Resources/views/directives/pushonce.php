@@ -7,11 +7,11 @@
 // @endpushonce
 //////////////////////////////////////////////////////////
 
-Blade::directive('pushonce', function ($expression) {
+Blade::directive('pushonce', static function ($expression) {
     $isDisplayed = '__pushonce_' . trim(substr($expression, 1, -1));
     return "<?php if(!isset(\$__env->{$isDisplayed})): \$__env->{$isDisplayed} = true; \$__env->startPush({$expression}); ?>";
 });
 
-Blade::directive('endpushonce', function ($expression) {
+Blade::directive('endpushonce', static function ($expression) {
     return '<?php $__env->stopPush(); endif; ?>';
 });
