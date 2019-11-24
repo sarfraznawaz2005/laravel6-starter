@@ -12,7 +12,7 @@
 <main role="main" class="container main" id="app">
     <div class="row">
         <div class="col-md-12">
-            @include('flash::message')
+            @include('core::shared.flash')
             @include('core::shared.errors')
 
             @yield('content')

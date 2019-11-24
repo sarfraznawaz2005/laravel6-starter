@@ -25,7 +25,6 @@
         "doctrine/dbal": "^2.10",
         "eusonlito/laravel-meta": "^3.1",
         "fideloper/proxy": "^4.0",
-        "laracasts/flash": "^3.0",
         "laravel/framework": "^6.4",
         "laravel/tinker": "^1.0",
         "livewire/livewire": "^0.3.21",

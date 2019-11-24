@@ -560,6 +560,11 @@ function isIE()
     return false;
 }
 
+function flash($message, $type = 'info')
+{
+    session()->flash('alert-' . $type, $message);
+}
+
 function flashBack($message, $type = 'success')
 {
     flash($message, $type);

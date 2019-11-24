@@ -2,7 +2,6 @@
 
 namespace Modules\User\Models;
 
-use Balping\HashSlug\HasHashSlug;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -14,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\CleanHTMLTrait;
+use Modules\Core\Traits\Model\HashUrlTrait;
 use Modules\Core\Traits\Model\PurgeTrait;
 use Modules\Task\Models\Task;
 use Modules\User\Notifications\VerifyEmail;
@@ -28,7 +28,7 @@ class User extends CoreModel implements
     use Notifiable;
 
     // automatic fake model id
-    use HasHashSlug;
+    use HashUrlTrait;
 
     use PurgeTrait;
     protected $purge = [

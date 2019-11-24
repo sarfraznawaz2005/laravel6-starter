@@ -28,7 +28,7 @@
         <h1>{{appName()}}</h1>
     </div>
 
-    @include('flash::message')
+    @include('core::shared.flash')
     @include('core::shared.errors')
 
     <div class="login-box">

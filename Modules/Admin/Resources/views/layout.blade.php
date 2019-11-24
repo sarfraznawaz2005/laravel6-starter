@@ -16,7 +16,7 @@
         <strong class="page-title"><b class="fa fa-th-large"></b> {{Meta::get('title')}}</strong>
     @endslot
 
-    @include('flash::message')
+    @include('core::shared.flash')
     @include('core::shared.errors')
 
     @yield('content')
