@@ -26,6 +26,6 @@ class MigrateCrud extends Action
 
         flash($output ? nl2br($output) : 'Nothing to migrate.', 'success');
 
-        return redirect()->back();
+        return back();
     }
 }

@@ -26,6 +26,6 @@ class CompileCrud extends Action
             flash("npm run $type process failed", 'danger');
         }
 
-        return redirect()->back();
+        return back();
     }
 }
