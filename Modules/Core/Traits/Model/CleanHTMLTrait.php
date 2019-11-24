@@ -35,7 +35,7 @@ trait CleanHTMLTrait
      *
      * @return string
      */
-    public function tryToCleanAttributeValue($key, $value): string
+    public function tryToCleanAttributeValue($key, $value)
     {
         if ($this->canRemoveHTMLFromAttribute($key, $value)) {
             if (property_exists($this, 'allowedTags') && $this->allowedTags) {

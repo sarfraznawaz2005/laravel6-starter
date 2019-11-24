@@ -1,4 +1,6 @@
 not hash url in case of api
+remove flash
+actions quauable etc
 publish migrate rundev, optimize, etc toolbar
 
 npm outdated
