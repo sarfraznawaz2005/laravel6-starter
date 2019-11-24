@@ -8,9 +8,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Session\TokenMismatchException;
-use Log;
-use Mail;
-use Symfony\Component\Debug\Exception\FlattenException;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -23,6 +23,8 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         TokenMismatchException::class,
+        ModelNotFoundException::class,
+        NotFoundHttpException::class,
     ];
 
     /**
@@ -39,13 +41,13 @@ class Handler extends ExceptionHandler
      * Report or log an exception.
      *
      * @param Exception $exception
-     * @return void
+     * @return mixed
      * @throws Exception
      */
     public function report(Exception $exception)
     {
         if ($this->shouldReport($exception)) {
-            //$this->notifyDevTeam($exception);
+            $this->notifyDevTeam($exception);
         }
 
         parent::report($exception);
@@ -55,7 +57,7 @@ class Handler extends ExceptionHandler
      * Sends an email to the developer about the exception.
      *
      * @param Exception $exception
-     * @return void
+     * @return mixed
      */
     protected function notifyDevTeam(Exception $exception)
     {
