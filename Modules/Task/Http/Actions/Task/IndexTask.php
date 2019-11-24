@@ -9,8 +9,6 @@ use Sarfraznawaz2005\Actions\Action;
 
 class IndexTask extends Action
 {
-    protected $task;
-
     /**
      * Perform the action.
      *
@@ -19,7 +17,7 @@ class IndexTask extends Action
      */
     public function __invoke(Task $task)
     {
-        $this->task = $task;
+        return $task;
     }
 
     /**
@@ -37,10 +35,11 @@ class IndexTask extends Action
     /**
      * Response to be returned in case of API request.
      *
+     * @param $task
      * @return mixed
      */
-    protected function json()
+    protected function json($task)
     {
-        return response()->json($this->task->all(), Response::HTTP_OK);
+        return response()->json($task->all(), Response::HTTP_OK);
     }
 }

@@ -28,11 +28,12 @@ class CompleteTask extends Action
     /**
      * Response to be returned in case of web request.
      *
+     * @param $saved
      * @return mixed
      */
-    protected function html()
+    protected function html($saved)
     {
-        if (!$this->result) {
+        if (!$saved) {
             return flashBackErrors($this->errors);
         }
 
@@ -42,11 +43,12 @@ class CompleteTask extends Action
     /**
      * Response to be returned in case of API request.
      *
+     * @param $saved
      * @return mixed
      */
-    protected function json()
+    protected function json($saved)
     {
-        if (!$this->result) {
+        if (!$saved) {
             return response()->json(['result' => false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 

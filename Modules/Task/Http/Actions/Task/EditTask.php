@@ -8,8 +8,6 @@ use Sarfraznawaz2005\Actions\Action;
 
 class EditTask extends Action
 {
-    protected $task;
-
     /**
      * Perform the action.
      *
@@ -18,28 +16,30 @@ class EditTask extends Action
      */
     public function __invoke(Task $task)
     {
-        $this->task = $task;
+        return $task;
     }
 
     /**
      * Response to be returned in case of web request.
      *
+     * @param $task
      * @return mixed
      */
-    protected function html()
+    protected function html($task)
     {
         title('Edit Task');
 
-        return view('task::pages.task.edit')->with(['task' => $this->task]);
+        return view('task::pages.task.edit')->with(['task' => $task]);
     }
 
     /**
      * Response to be returned in case of API request.
      *
+     * @param $task
      * @return mixed
      */
-    protected function json()
+    protected function json($task)
     {
-        return response()->json($this->task, Response::HTTP_OK);
+        return response()->json($task, Response::HTTP_OK);
     }
 }

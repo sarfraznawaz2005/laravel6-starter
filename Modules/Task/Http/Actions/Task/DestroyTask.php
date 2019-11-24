@@ -23,11 +23,12 @@ class DestroyTask extends Action
     /**
      * Response to be returned in case of web request.
      *
+     * @param $deleted
      * @return mixed
      */
-    protected function html()
+    protected function html($deleted)
     {
-        if (!$this->result) {
+        if (!$deleted) {
             return flashBackErrors(self::MESSAGE_FAIL);
         }
 
@@ -37,11 +38,12 @@ class DestroyTask extends Action
     /**
      * Response to be returned in case of API request.
      *
+     * @param $deleted
      * @return mixed
      */
-    protected function json()
+    protected function json($deleted)
     {
-        if (!$this->result) {
+        if (!$deleted) {
             return response()->json(['result' => false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
