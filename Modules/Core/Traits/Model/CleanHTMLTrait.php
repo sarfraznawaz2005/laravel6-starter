@@ -2,6 +2,8 @@
 
 namespace Modules\Core\Traits\Model;
 
+use Illuminate\Support\Str;
+
 /**
  * @property array clean
  * @property array noclean
@@ -15,14 +17,10 @@ trait CleanHTMLTrait
      *
      * @param string $key
      * @param mixed $value
+     * @return mixed
      */
     public function setAttribute($key, $value)
     {
-        // convert boolean false into 0
-        if (is_bool($value) && !$value) {
-            $value = 0;
-        }
-
         parent::setAttribute($key, $this->tryToCleanAttributeValue($key, $value));
     }
 
@@ -33,7 +31,7 @@ trait CleanHTMLTrait
      * @param string $key
      * @param string $value
      *
-     * @return string
+     * @return mixed
      */
     public function tryToCleanAttributeValue($key, $value)
     {
