@@ -12,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Core\Console\Cleanup;
 use Modules\Core\Console\RouteList;
 use Modules\Core\Console\VendorCleanup;
+use Modules\Core\Http\Middleware\Cached;
 use Modules\Core\Http\Middleware\EnvLogoMiddleware;
 use Modules\Core\Http\Middleware\HttpsProtocol;
 use Modules\Core\Http\Middleware\OptimizeMiddleware;
@@ -38,7 +39,7 @@ class CoreServiceProvider extends ServiceProvider
         #################################################
 
         // route middlewares
-        //$router->aliasMiddleware('FooExample', FooExample::class);
+        $router->aliasMiddleware('cached', Cached::class);
 
         if (config('core.settings.minify_html_response')) {
             $kernel->pushMiddleware(OptimizeMiddleware::class);
