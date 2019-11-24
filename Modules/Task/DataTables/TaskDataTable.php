@@ -2,7 +2,7 @@
 
 namespace Modules\Task\DataTables;
 
-use Modules\Task\Enums\TaskCompletedEnum;
+use Modules\Task\Enums\TaskEnum;
 use Modules\Task\Models\Task;
 use function strip_tags;
 use function substr;
@@ -31,8 +31,8 @@ class TaskDataTable extends DataTable
                 return tdCenter($actions);
             })
             ->editColumn('completed', function ($object) {
-                $text = TaskCompletedEnum::getDescription($object->completed);
-                $type = $text === 'Yes' ? 'success' : 'danger';
+                $type = TaskEnum::COMPLETE === $object->completed ? 'success' : 'danger';
+                $text = TaskEnum::COMPLETE === $object->completed ? 'Yes' : 'No';
 
                 return tdLabel($type, $text);
             })

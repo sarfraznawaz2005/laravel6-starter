@@ -18,7 +18,6 @@
         "anahkiasen/former": "^4.3",
         "arrilot/laravel-widgets": "^3.13",
         "balping/laravel-hashslug": "^2.1",
-        "bensampo/laravel-enum": "^1.26",
         "bepsvpt/secure-headers": "^5.5",
         "beyondcode/laravel-websockets": "^1.3",
         "davejamesmiller/laravel-breadcrumbs": "^5.3",
