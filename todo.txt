@@ -1,4 +1,3 @@
-actions quauable etc
 publish migrate rundev, optimize, etc toolbar
 
 npm outdated
