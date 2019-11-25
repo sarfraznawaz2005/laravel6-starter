@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        app()->extend('command.controller.make', static function () {
+            exit('Controller creation disabled, use Actions instead!');
+        });
     }
 }
