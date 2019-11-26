@@ -61,7 +61,8 @@
             <i class="glyphicon glyphicon-console"></i>
         </a>
         &nbsp;
-        <a class="btn btn-danger btn-sm" href="/applogs__" target="_blank" target="_blank" data-placement="bottom" data-tooltip
+        <a class="btn btn-danger btn-sm" href="/applogs__" target="_blank" target="_blank" data-placement="bottom"
+           data-tooltip
            data-original-title="View Logs">
             <i class="glyphicon glyphicon-list-alt"></i>
         </a>
@@ -246,6 +247,14 @@
         a:hover {
             color: #333;
             text-decoration: none;
+        }
+
+        pre {
+            color: #fff;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
         }
     </style>
 @endpush

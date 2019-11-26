@@ -24,7 +24,7 @@ class MigrateCrud extends Action
         Artisan::call('migrate', ['--force' => true]);
         $output .= trim(Artisan::output());
 
-        flash($output ? nl2br($output) : 'Nothing to migrate.', 'success');
+        flash($output ? "<pre>$output</pre>" : 'Nothing to migrate.', 'success');
 
         return back();
     }

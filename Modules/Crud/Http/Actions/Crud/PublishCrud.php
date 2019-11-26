@@ -20,7 +20,6 @@ class PublishCrud extends Action
         @file_put_contents(base_path('database/migrations') . '/.gitignore', '*');
 
         Artisan::call('vendor:publish', ['--all' => true]);
-
         $output .= trim(Artisan::output());
         Artisan::call('module:publish-config', ['--force' => true]);
         $output .= trim(Artisan::output());
@@ -28,17 +27,13 @@ class PublishCrud extends Action
         $output .= trim(Artisan::output());
         Artisan::call('module:publish-translation');
         $output .= trim(Artisan::output());
-
         Artisan::call('module:publish');
         $output .= trim(Artisan::output());
-
-        //echo $output;exit;
 
         $this->deleteMigratedFiles();
 
         $this->optimize();
 
-        flash('Modules Published Successfully!', 'success');
-        return redirect()->back();
+        return flashBack('Modules Published Successfully!');
     }
 }

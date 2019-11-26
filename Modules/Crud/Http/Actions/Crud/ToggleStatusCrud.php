@@ -24,12 +24,11 @@ class ToggleStatusCrud extends Action
                         $module->enable();
                     }
 
-                    flash("Module $status Successfully!", 'success');
-                    return redirect()->back();
+                    return flashBack("Module $status Successfully!");
                 }
             }
         }
 
-        return redirect()->back();
+        return back();
     }
 }

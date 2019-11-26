@@ -99,14 +99,14 @@ trait CrudTrait
                 }
             }
 
-            flash($message ?: nl2br($result), 'success');
+            flash($message ?: "<pre>$result</pre>", 'success');
 
             if ($commandName === 'module:make') {
                 shell_exec($this->getArtisan() . 'module:setup');
             }
         }
 
-        return redirect()->back();
+        return back();
     }
 
     protected function getArtisan(): string
