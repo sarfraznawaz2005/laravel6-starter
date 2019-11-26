@@ -9,12 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "ext-curl": "*",
-        "ext-dom": "*",
-        "ext-json": "*",
-        "ext-pdo": "*",
-        "ext-simplexml": "*",
-        "ext-zip": "*",
         "anahkiasen/former": "^4.3",
         "arrilot/laravel-widgets": "^3.13",
         "balping/laravel-hashslug": "^2.1",
@@ -39,7 +33,6 @@
         "sarfraznawaz2005/plogs": "^1.2",
         "sarfraznawaz2005/servermonitor": "^1.8",
         "sinergi/browser-detector": "^6.1",
-        "watson/active": "^4.0",
         "yajra/laravel-datatables-buttons": "^4.8",
         "yajra/laravel-datatables-oracle": "^9.7"
     },

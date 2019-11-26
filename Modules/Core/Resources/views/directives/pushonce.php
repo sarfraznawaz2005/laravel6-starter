@@ -7,9 +7,12 @@
 // @endpushonce
 //////////////////////////////////////////////////////////
 
+use Illuminate\Support\Facades\Blade;
+
 Blade::directive('pushonce', static function ($expression) {
-    $isDisplayed = '__pushonce_' . trim(substr($expression, 1, -1));
-    return "<?php if(!isset(\$__env->{$isDisplayed})): \$__env->{$isDisplayed} = true; \$__env->startPush({$expression}); ?>";
+    $var = '$__env->{"__pushonce_" . md5(__FILE__ . ":" . __LINE__)}';
+
+    return "<?php if(!isset({$var})): {$var} = true; \$__env->startPush({$expression}); ?>";
 });
 
 Blade::directive('endpushonce', static function ($expression) {

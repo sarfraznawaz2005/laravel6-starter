@@ -14,13 +14,13 @@
 
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {{active(['/', 'home'])}}">
+                    <li class="nav-item {{active_link(['/', 'home'])}}">
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
 
                     @auth
                         @if(Module::isEnabled('Task'))
-                            <li class="nav-item {{active(['tasks.index', 'tasks.edit'])}}">
+                            <li class="nav-item {{active_link(['tasks.index', 'tasks.edit'])}}">
                                 <a class="nav-link" href="{{route('tasks.index')}}">Tasks</a>
                             </li>
                         @endif
@@ -43,13 +43,13 @@
                     @guest
                         @if(Module::isEnabled('User'))
                             @if(config('user.allow_user_registration', true))
-                                <li class="nav-item nav-item {{active('login')}}">
+                                <li class="nav-item nav-item {{active_link('login')}}">
                                     <a class="nav-link" href="{{ route('login')  }}">
                                         <i class="fa fa-sign-in"></i> Sign In
                                     </a>
                                 </li>
 
-                                <li class="nav-item {{active('register')}}">
+                                <li class="nav-item {{active_link('register')}}">
                                     <a class="nav-link" href="{{ route('register') }}">
                                         <i class="fa fa-user"></i> Create Account
                                     </a>

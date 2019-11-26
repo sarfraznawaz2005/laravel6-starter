@@ -37,10 +37,10 @@ trait CleanHTMLTrait
     {
         if ($this->canRemoveHTMLFromAttribute($key, $value)) {
             if (property_exists($this, 'allowedTags') && $this->allowedTags) {
-                return htmlspecialchars(strip_tags($value, $this->allowedTags));
+                return htmlspecialchars(strip_tags($value, $this->allowedTags), ENT_QUOTES, 'UTF-8');
             }
 
-            return htmlspecialchars(strip_tags($value));
+            return htmlspecialchars(strip_tags($value), ENT_QUOTES, 'UTF-8');
         }
 
         return $value;
