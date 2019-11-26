@@ -240,12 +240,12 @@
 @push('styles')
     <style>
         a {
-            color: #2780E3;
+            color: #333;
             text-decoration: none;
         }
 
         a:hover {
-            color: #333;
+            color: #2780E3;
             text-decoration: none;
         }
 
