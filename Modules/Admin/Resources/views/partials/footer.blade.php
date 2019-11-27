@@ -1,5 +1,5 @@
 {{-- IE es6 pollyfill --}}
-@if(isIE())
+@if(isBadBrowser())
     <script src="/modules/core/js/pollyfills.js"></script>
 @endif
 

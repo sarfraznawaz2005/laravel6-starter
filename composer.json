@@ -32,7 +32,6 @@
         "sarfraznawaz2005/noty": "^1.1",
         "sarfraznawaz2005/plogs": "^1.2",
         "sarfraznawaz2005/servermonitor": "^1.8",
-        "sinergi/browser-detector": "^6.1",
         "yajra/laravel-datatables-buttons": "^4.8",
         "yajra/laravel-datatables-oracle": "^9.7"
     },

@@ -551,13 +551,11 @@ function getSql($builder)
     return vsprintf(str_replace('?', '%s', $addSlashes), $builder->getBindings());
 }
 
-function isIE()
+function isBadBrowser()
 {
-    if ((new Browser())->getName() === Browser::IE) {
-        return true;
-    }
+    $ua = htmlentities($_SERVER['HTTP_USER_AGENT'], ENT_QUOTES, 'UTF-8');
 
-    return false;
+    return preg_match('~MSIE|Internet Explorer~i', $ua) || (strpos($ua, 'Trident/7.0') !== false && strpos($ua, 'rv:11.0') !== false);
 }
 
 function flash($message, $type = 'info')
