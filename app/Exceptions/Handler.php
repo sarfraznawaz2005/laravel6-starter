@@ -89,7 +89,6 @@ class Handler extends ExceptionHandler
                 }
 
             } catch (Exception $ex) {
-                Log::warning('Could not send error email to dev team!');
             }
         }
     }
