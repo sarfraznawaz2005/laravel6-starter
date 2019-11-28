@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Modules\User\Models\User;
 use function abort;
 
@@ -42,7 +43,7 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array $data
+     * @param array $data
      * @return \Modules\User\Models\User
      */
     protected function create(array $data)
@@ -60,6 +61,11 @@ class RegisterController extends Controller
             'is_active' => config('user.activate_user_on_registration') ? 1 : 0,
         ]);
 
+        // we don't want to put "api_token" in User's $fillable property for
+        // security reasons, therefore we save it separately
+        $instance->api_token = hash('sha256', Str::random(80));
+        $instance->save();
+
         return $instance;
     }
 
@@ -75,7 +81,7 @@ class RegisterController extends Controller
     /**
      * Handle a registration request for the application.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function register(Request $request)

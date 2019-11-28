@@ -9,7 +9,7 @@ return [
     'type' => 'info',
 
     // top, topLeft, topCenter, topRight, center, centerLeft, centerRight, bottom, bottomLeft, bottomCenter, bottomRight
-    'layout' => 'topCenter',
+    'layout' => 'topRight',
 
     // relax, mint, sunset, metroui, semanticui, bootstrap-v3, bootstrap-v4
     'theme' => 'sunset',
