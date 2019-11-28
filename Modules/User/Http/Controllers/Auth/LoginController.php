@@ -52,7 +52,7 @@ class LoginController extends Controller
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
             // logged in successfully
 
-            noty('Welcome ' . user()->name);
+            noty('Welcome ' . user()->name, 'success');
 
             return $this->sendLoginResponse($request);
         }
@@ -86,7 +86,7 @@ class LoginController extends Controller
         $request->session()->regenerate();
         $request->session()->invalidate();
 
-        noty('You are logged out.', 'warning');
+        noty('You are logged out.');
 
         return redirect(config('user.redirect_route_after_logout', '/'));
     }
