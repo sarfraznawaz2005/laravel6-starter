@@ -20,13 +20,29 @@ class OptimizeMiddleware
     {
         $response = $next($request);
 
+        // do nothing in case of console
+        if (app()->runningInConsole()) {
+            return $response;
+        }
+
+        // do nothing in case of ajax request
+        if ($request->ajax() || $request->expectsJson()) {
+            return $response;
+        }
+
+        // do nothing in case of method which is not GET
+        if (!$request->isMethod('get')) {
+            return $response;
+        }
+
+        // do nothing in case of binary content
         if ($response instanceof BinaryFileResponse) {
             return $response;
         }
 
         $buffer = $response->getContent();
 
-        ini_set("pcre.recursion_limit", "16777");
+        ini_set('pcre.recursion_limit', '16777');
 
         // enable GZip, too!
         ini_set('zlib.output_compression', 'On');
@@ -51,7 +67,7 @@ class OptimizeMiddleware
         )  # If we made it here, we are not in a blacklist tag.
         %Six';
 
-        $newBuffer = preg_replace($regEx, " ", $buffer);
+        $newBuffer = preg_replace($regEx, ' ', $buffer);
 
         if ($newBuffer !== null) {
             $buffer = $newBuffer;
