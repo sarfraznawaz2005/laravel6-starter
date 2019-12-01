@@ -8,6 +8,13 @@ use Sarfraznawaz2005\Actions\Action;
 
 class StoreTask extends Action
 {
+    public function transform(): array
+    {
+        return [
+            'user_id' => user()->id ?? (request()->user_id ?? 0),
+        ];
+    }
+
     /**
      * Define any validation rules.
      *
@@ -25,8 +32,6 @@ class StoreTask extends Action
      */
     public function __invoke(Task $task)
     {
-        request()->request->add(['user_id' => user()->id ?? (request()->user_id ?? 0)]);
-
         return $this->create($task);
     }
 
