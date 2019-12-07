@@ -8,6 +8,11 @@ use Sarfraznawaz2005\Actions\Action;
 
 class StoreTask extends Action
 {
+    /**
+     * Transform request data
+     *
+     * @return array
+     */
     public function transform(): array
     {
         return [
