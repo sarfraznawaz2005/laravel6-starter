@@ -17,6 +17,7 @@ use Modules\Core\Http\Middleware\EnvLogoMiddleware;
 use Modules\Core\Http\Middleware\HttpsProtocol;
 use Modules\Core\Http\Middleware\OptimizeMiddleware;
 use Sarfraznawaz2005\Loading\Http\Middleware\LoadingMiddleware;
+use Symfony\Component\Finder\Finder;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -90,7 +91,33 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->enableCascadingConfig();
+    }
+
+    /**
+     * Allows cascading config for different environments with folder names
+     * like config.local, config.testing, etc
+     *
+     * @return void
+     */
+    protected function enableCascadingConfig()
+    {
+        $envConfigPath = base_path('config.' . app()->environment());
+
+        if (!file_exists($envConfigPath) || !is_dir($envConfigPath)) {
+            return;
+        }
+
+        $config = app('config');
+
+        foreach (Finder::create()->files()->name('*.php')->in($envConfigPath) as $file) {
+            $key_name = basename($file->getRealPath(), '.php');
+
+            $old_values = $config->get($key_name) ?: [];
+            $new_values = require $file->getRealPath();
+
+            $config->set($key_name, array_replace_recursive($old_values, $new_values));
+        }
     }
 
     /**
