@@ -98,25 +98,33 @@ class CoreServiceProvider extends ServiceProvider
      * Allows cascading config for different environments with folder names
      * like config.local, config.testing, etc
      *
-     * @return void
+     * NOTE: .env file must contain at least one entry called APP_ENV
+     *
+     * @return mixed
      */
     protected function enableCascadingConfig()
     {
-        $envConfigPath = base_path('config.' . app()->environment());
+        try {
+            $envConfigPath = base_path('config.' . app()->environment());
 
-        if (!file_exists($envConfigPath) || !is_dir($envConfigPath)) {
-            return;
-        }
+            if (!file_exists($envConfigPath) || !is_dir($envConfigPath)) {
+                return;
+            }
 
-        $config = app('config');
+            $config = app('config');
 
-        foreach (Finder::create()->files()->name('*.php')->in($envConfigPath) as $file) {
-            $key_name = basename($file->getRealPath(), '.php');
+            foreach (Finder::create()->files()->name('*.php')->in($envConfigPath) as $file) {
+                $key_name = basename($file->getRealPath(), '.php');
 
-            $old_values = $config->get($key_name) ?: [];
-            $new_values = require $file->getRealPath();
+                $old_values = $config->get($key_name) ?: [];
+                $new_values = require $file->getRealPath();
 
-            $config->set($key_name, array_replace_recursive($old_values, $new_values));
+                if (is_array($old_values) && is_array($new_values)) {
+                    $config->set($key_name, array_replace_recursive($old_values, $new_values));
+                }
+            }
+        } catch (\Exception $exception) {
+
         }
     }
 
