@@ -117,7 +117,7 @@ class CoreServiceProvider extends ServiceProvider
                 $key_name = basename($file->getRealPath(), '.php');
 
                 $old_values = $config->get($key_name) ?: [];
-                $new_values = require $file->getRealPath();
+                $new_values = include $file->getRealPath();
 
                 if (is_array($old_values) && is_array($new_values)) {
                     $config->set($key_name, array_replace_recursive($old_values, $new_values));
