@@ -34,3 +34,4 @@ push.sh
 /public/js/app.js
 /public/css/app.css
 /storage/clockwork/*
+/storage/servermonitor.cache

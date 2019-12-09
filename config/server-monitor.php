@@ -56,6 +56,9 @@ return [
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\DiskSpaceEnough::class => [
                 'fail_percentage' => 90
             ],
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\AvgCpuUsage::class => [
+                'fail_percentage' => 90
+            ],
 
             /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\CheckPhpIniValues::class => [
@@ -177,10 +180,8 @@ return [
                 ],
                 */
 
-                /*
                 // requires "sensiolabs/security-checker" package.
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerPackagesSecurity::class,
-                */
 
                 /*
                 // requires "Predis\Client" package.
