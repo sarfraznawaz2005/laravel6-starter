@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Console\Cleanup;
+use Modules\Core\Console\InstallCommand;
 use Modules\Core\Console\RouteList;
 use Modules\Core\Console\VendorCleanup;
 use Modules\Core\Http\Middleware\Cached;
@@ -52,6 +53,7 @@ class CoreServiceProvider extends ServiceProvider
         // register our commands
         #################################################
         $this->commands([
+            InstallCommand::class,
             Cleanup::class,
             VendorCleanup::class,
             RouteList::class,
