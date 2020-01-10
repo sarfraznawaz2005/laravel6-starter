@@ -136,7 +136,7 @@ $('body').on('click', '.confirm-delete', function (e) {
                 }, 2000)
             })
         }
-    }).then((result) => {
+    }).then(function (result) {
         if (result.value) {
             document.querySelector('.btn.swal2-confirm').disabled = true;
             $form.submit();
@@ -166,7 +166,7 @@ function showAlert(message, title, type, closeOnEscapeKey, callback) {
         content: message,
         closeOnEsc: closeOnEscapeKey,
         closeOnClickOutside: closeOnClickOutside
-    }).then(() => {
+    }).then(function () {
         if (typeof callback !== 'undefined' && typeof callback === 'function') {
             callback();
         }
@@ -194,7 +194,7 @@ function showConfirm(message, callback) {
         },
         closeOnEsc: true,
         dangerMode: true,
-    }).then((willDelete) => {
+    }).then(function (willDelete) {
         if (willDelete) {
             document.querySelector('.swal-button').disabled = true;
             callback();
