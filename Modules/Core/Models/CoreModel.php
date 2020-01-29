@@ -18,20 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CoreModel extends Model
 {
-    # added to get CacheTrait trait working because Ardent was changing this function
-    # which was affecting CacheTrait trait
-    public function newQueryWithoutScopes()
-    {
-        $builder = $this->newEloquentBuilder(
-            $this->newBaseQueryBuilder()
-        );
-
-        // Once we have the query builders, we will set the model instances so the
-        // builder can easily access any information it may need from the model
-        // while it is constructing and executing various queries against it.
-        return $builder->setModel($this)->with($this->with);
-    }
-
     /**
      * created_at column accessor.
      *

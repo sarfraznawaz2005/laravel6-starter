@@ -4,11 +4,11 @@ namespace Modules\Task\Models;
 
 use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\AuthorTrait;
-use Modules\Core\Traits\Model\CacheTrait\CacheTrait;
 use Modules\Core\Traits\Model\CleanHTMLTrait;
 use Modules\Core\Traits\Model\HashUrlTrait;
 use Modules\User\Models\User;
 use QCod\ImageUp\HasImageUploads;
+use Rinvex\Cacheable\CacheableEloquent;
 
 class Task extends CoreModel
 {
@@ -19,7 +19,7 @@ class Task extends CoreModel
     use HashUrlTrait;
 
     // cache queries on the model
-    use CacheTrait;
+    use CacheableEloquent;
 
     // to upload images
     use HasImageUploads;
