@@ -52,7 +52,7 @@ class StoreTask extends Action
             return flashBackErrors($this->errors);
         }
 
-        return flashBack(self::MESSAGE_ADD);
+        return flashBack(self::MESSAGE_CREATE);
     }
 
     /**
